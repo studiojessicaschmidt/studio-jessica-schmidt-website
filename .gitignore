@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Claude / Editor
+.claude/
+.vscode/
+*.code-workspace
+
+# Fonts ZIP
+fonts/*.zip
+
+# Interne Dokumente (nicht öffentlich)
+projekte/Richtungs Wechsel Yoga Studio/
+
+# Zu große Mediendateien (>100 MB, nicht für Git geeignet)
+**/*.gif

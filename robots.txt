@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Disallow: /Impressum/
+Disallow: /AGB-und-Datenschutz/
+
+# AI Crawlers — explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://studiojessicaschmidt.de/sitemap.xml
