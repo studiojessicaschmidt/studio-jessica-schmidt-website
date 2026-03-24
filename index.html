@@ -2560,20 +2560,22 @@ footer {
 
 .clients-intro {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 0;
 }
 
 .clients-logos {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 120px;
+    gap: 140px;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 
+/* Desktop */
 .client-logo-box {
-    width: 199px;
-    height: 69px;
+    width: 219px;
+    height: 76px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2593,6 +2595,19 @@ footer {
     filter: grayscale(0) opacity(1);
 }
 
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .clients-logos {
+        gap: 64px;
+        flex-wrap: nowrap;
+    }
+    .client-logo-box {
+        width: 160px;
+        height: 56px;
+    }
+}
+
+/* Mobile */
 @media (max-width: 767px) {
     .clients-section {
         padding: 44px 0;
