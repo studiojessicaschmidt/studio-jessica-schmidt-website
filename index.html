@@ -2452,9 +2452,13 @@ footer {
     }
     .service-cards {
         margin-left: -20px;
-        padding-right: 40px;
+        padding-right: 11vw; /* symmetrisch zur Spacer-Breite → letzte Karte zentriert */
         scrollbar-width: none;
         -ms-overflow-style: none;
+    }
+    /* Spacer für Service-Cards: 11vw = (100vw - 78vw) / 2 → erste Karte perfekt zentriert */
+    .service-cards .scroll-spacer {
+        min-width: 11vw;
     }
     .service-cards::-webkit-scrollbar {
         display: none;
