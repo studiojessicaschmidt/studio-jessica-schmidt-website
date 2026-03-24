@@ -2429,17 +2429,6 @@ footer {
     .services {
         position: relative;
     }
-    .services::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 36px;
-        height: 100%;
-        background: linear-gradient(to right, #F5F5F0, transparent);
-        pointer-events: none;
-        z-index: 5;
-    }
     .services::after {
         content: '';
         position: absolute;
@@ -2452,9 +2441,16 @@ footer {
         z-index: 5;
     }
     .service-cards {
+        margin-left: -20px;
         padding-right: 40px;
         scrollbar-width: none;
         -ms-overflow-style: none;
+    }
+    /* 20px Spacer scrollt mit — kein fixer Stripe links */
+    .service-cards::before {
+        content: '';
+        min-width: 20px;
+        flex-shrink: 0;
     }
     .service-cards::-webkit-scrollbar {
         display: none;
@@ -2482,10 +2478,15 @@ footer {
     }
     .testimonials-grid {
         margin-left: -20px;
-        padding-left: 20px;
         padding-right: 40px;
         scrollbar-width: none;
         -ms-overflow-style: none;
+    }
+    /* 20px Spacer scrollt mit — kein fixer Stripe links */
+    .testimonials-grid::before {
+        content: '';
+        min-width: 20px;
+        flex-shrink: 0;
     }
     .testimonials-grid::-webkit-scrollbar {
         display: none;
@@ -3178,11 +3179,12 @@ startAutoPlay();
     const serviceDots = document.querySelectorAll('.service-dot');
     if (!cards || !serviceDots.length) return;
 
-    // Dot sync beim Scrollen
+    // Dot sync beim Scrollen (20px Spacer-Offset berücksichtigen)
+    const SPACER = 20;
     cards.addEventListener('scroll', function() {
         const cardEl = cards.querySelector('.service-card');
         const gap = parseInt(getComputedStyle(cards).gap) || 20;
-        const idx = Math.round(cards.scrollLeft / (cardEl.offsetWidth + gap));
+        const idx = Math.round(Math.max(0, cards.scrollLeft - SPACER) / (cardEl.offsetWidth + gap));
         serviceDots.forEach((d, i) => d.classList.toggle('active', i === idx));
     }, { passive: true });
 
@@ -3191,7 +3193,7 @@ startAutoPlay();
         dot.addEventListener('click', () => {
             const cardEl = cards.querySelector('.service-card');
             const gap = parseInt(getComputedStyle(cards).gap) || 20;
-            cards.scrollTo({ left: i * (cardEl.offsetWidth + gap), behavior: 'smooth' });
+            cards.scrollTo({ left: SPACER + i * (cardEl.offsetWidth + gap), behavior: 'smooth' });
         });
     });
 

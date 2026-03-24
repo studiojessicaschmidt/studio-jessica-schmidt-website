@@ -314,10 +314,16 @@
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 gap: 15px;
-                padding: 10px 40px 10px 20px;
+                padding: 10px 40px 10px 0;
                 grid-template-columns: none;
                 scrollbar-width: none;
                 -ms-overflow-style: none;
+            }
+            /* 20px Spacer scrollt mit — kein fixer Stripe links */
+            .three-images-grid::before {
+                content: '';
+                min-width: 20px;
+                flex-shrink: 0;
             }
             .three-images-grid::-webkit-scrollbar {
                 display: none;
