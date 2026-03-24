@@ -2467,17 +2467,6 @@ footer {
     .testimonials {
         position: relative;
     }
-    .testimonials::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 36px;
-        height: 100%;
-        background: linear-gradient(to right, #F5F5F0, transparent);
-        pointer-events: none;
-        z-index: 5;
-    }
     .testimonials::after {
         content: '';
         position: absolute;
@@ -2488,8 +2477,12 @@ footer {
         background: linear-gradient(to right, transparent, #F5F5F0);
         pointer-events: none;
         z-index: 5;
+        opacity: var(--t-fade-opacity, 1);
+        transform: translateX(calc((1 - var(--t-fade-opacity, 1)) * 72px));
     }
     .testimonials-grid {
+        margin-left: -20px;
+        padding-left: 20px;
         padding-right: 40px;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -3243,11 +3236,21 @@ startAutoPlay();
     observer.observe(cards);
 })();
 
-// Testimonials: Swipe-Tease (Mobile)
+// Testimonials: Swipe-Tease + Right-Fade (Mobile)
 (function() {
     if (window.innerWidth >= 768) return;
     const grid = document.querySelector('.testimonials-grid');
     if (!grid) return;
+    const section = document.querySelector('.testimonials');
+
+    // Right fade: smoothly slides out to the right as you scroll to the end
+    grid.addEventListener('scroll', function() {
+        const maxScroll = grid.scrollWidth - grid.clientWidth;
+        if (!section || maxScroll <= 0) return;
+        const progress = grid.scrollLeft / maxScroll;
+        const opacity = progress < 0.65 ? 1 : Math.max(0, 1 - (progress - 0.65) / 0.35);
+        section.style.setProperty('--t-fade-opacity', opacity);
+    }, { passive: true });
 
     function easeInOutSine(t) {
         return -(Math.cos(Math.PI * t) - 1) / 2;

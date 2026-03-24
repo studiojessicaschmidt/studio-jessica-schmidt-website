@@ -314,7 +314,7 @@
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 gap: 15px;
-                padding: 10px 0;
+                padding: 10px 40px 10px 20px;
                 grid-template-columns: none;
                 scrollbar-width: none;
                 -ms-overflow-style: none;
@@ -914,17 +914,9 @@ footer {
         @media (max-width: 767px) {
             .scroll-fade-wrapper {
                 position: relative;
-            }
-            .scroll-fade-wrapper::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -20px;
-                width: 48px;
-                height: 100%;
-                background: linear-gradient(to right, #F5F5F0 42%, transparent);
-                pointer-events: none;
-                z-index: 5;
+                overflow: hidden;
+                margin-left: -20px;
+                margin-right: -20px;
             }
             .scroll-fade-wrapper::after {
                 content: '';
@@ -936,6 +928,8 @@ footer {
                 background: linear-gradient(to right, transparent, #F5F5F0);
                 pointer-events: none;
                 z-index: 5;
+                opacity: var(--fade-opacity, 1);
+                transform: translateX(calc((1 - var(--fade-opacity, 1)) * 72px));
             }
         }
     </style>
@@ -1291,11 +1285,22 @@ Softwarelösungen.
 </script>
 
     <script>
-    // Three Images Grid: Swipe-Tease (Mobile)
+    // Three Images Grid: Swipe-Tease + Right-Fade (Mobile)
     (function() {
         if (window.innerWidth >= 768) return;
         var grid = document.querySelector('.three-images-grid');
         if (!grid) return;
+        var wrapper = grid.parentElement;
+
+        // Right fade: smoothly slides out to the right as you near the last image
+        grid.addEventListener('scroll', function() {
+            var maxScroll = grid.scrollWidth - grid.clientWidth;
+            if (!wrapper || maxScroll <= 0) return;
+            var progress = grid.scrollLeft / maxScroll;
+            var opacity = progress < 0.65 ? 1 : Math.max(0, 1 - (progress - 0.65) / 0.35);
+            wrapper.style.setProperty('--fade-opacity', opacity);
+        }, { passive: true });
+
         function easeInOutSine(t) { return -(Math.cos(Math.PI * t) - 1) / 2; }
         function animateScroll(el, from, to, duration, easingFn, done) {
             var diff = to - from, start = null;
