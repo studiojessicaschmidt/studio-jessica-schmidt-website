@@ -316,14 +316,13 @@
                 scrollbar-width: none;
                 -ms-overflow-style: none;
             }
-            /* 20px Spacer scrollt mit — kein fixer Stripe links */
-            .three-images-grid::before {
-                content: '';
-                min-width: 20px;
-                flex-shrink: 0;
-            }
             .three-images-grid::-webkit-scrollbar {
                 display: none;
+            }
+            .scroll-spacer {
+                min-width: 20px;
+                flex-shrink: 0;
+                align-self: stretch;
             }
             
             .grid-image {
@@ -961,6 +960,7 @@ footer {
             <!-- Three Images Row -->
             <div class="scroll-fade-wrapper">
             <div class="three-images-grid">
+                <div class="scroll-spacer"></div>
                 <img src="/projekte/Platzhalter/anastasiya-badun-DHvKXnq2IfU-unsplash.webp" alt="Detail 1" class="grid-image" loading="lazy">
                 <img src="/projekte/Platzhalter/anastasiya-badun-DHvKXnq2IfU-unsplash.webp" alt="Detail 2" class="grid-image" loading="lazy">
                 <img src="/projekte/Platzhalter/anastasiya-badun-DHvKXnq2IfU-unsplash.webp" alt="Detail 3" class="grid-image" loading="lazy">

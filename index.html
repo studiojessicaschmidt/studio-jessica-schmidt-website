@@ -2424,6 +2424,15 @@ footer {
    SCROLL AFFORDANCE — KARUSSELLS (Mobile)
    ============================================ */
 
+/* Scroll-Spacer: linkes Padding scrollt mit dem Inhalt */
+@media (max-width: 767px) {
+    .scroll-spacer {
+        min-width: 20px;
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+}
+
 /* Services + Testimonials: Fade-Gradient + Peek */
 @media (max-width: 767px) {
     .services {
@@ -2445,12 +2454,6 @@ footer {
         padding-right: 40px;
         scrollbar-width: none;
         -ms-overflow-style: none;
-    }
-    /* 20px Spacer scrollt mit — kein fixer Stripe links */
-    .service-cards::before {
-        content: '';
-        min-width: 20px;
-        flex-shrink: 0;
     }
     .service-cards::-webkit-scrollbar {
         display: none;
@@ -2481,12 +2484,6 @@ footer {
         padding-right: 40px;
         scrollbar-width: none;
         -ms-overflow-style: none;
-    }
-    /* 20px Spacer scrollt mit — kein fixer Stripe links */
-    .testimonials-grid::before {
-        content: '';
-        min-width: 20px;
-        flex-shrink: 0;
     }
     .testimonials-grid::-webkit-scrollbar {
         display: none;
@@ -2659,7 +2656,7 @@ footer {
         <div class="container">
             
             <div class="service-cards">
-                
+                <div class="scroll-spacer"></div>
                 <!-- Clarity Check -->
                 <div class="service-card">
                     <h3>Strategie Sprint</h3>
@@ -2855,6 +2852,7 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
             </div>
 
             <div class="testimonials-grid">
+                <div class="scroll-spacer"></div>
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card">
                     <p class="testimonial-text">
