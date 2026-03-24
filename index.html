@@ -3155,20 +3155,45 @@ startAutoPlay();
         });
     });
 
+    // Easing: easeOutElastic — echter Feder-Bounce
+    function easeOutElastic(t) {
+        const c4 = (2 * Math.PI) / 3;
+        return t === 0 ? 0 : t === 1 ? 1
+            : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+    }
+    // Easing: easeInOutCubic — smooth zurück
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function animateScroll(el, from, to, duration, easingFn, done) {
+        const diff = to - from;
+        let start = null;
+        function step(ts) {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / duration, 1);
+            el.scrollLeft = from + diff * easingFn(p);
+            if (p < 1) requestAnimationFrame(step);
+            else if (done) done();
+        }
+        requestAnimationFrame(step);
+    }
+
     // Swipe-Tease — einmal wenn Section sichtbar wird
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
-                    // Scroll-Snap kurz deaktivieren damit die Animation sichtbar ist
                     cards.style.scrollSnapType = 'none';
-                    cards.scrollTo({ left: 90, behavior: 'smooth' });
-                    setTimeout(() => {
-                        cards.scrollTo({ left: 0, behavior: 'smooth' });
+                    // → nach rechts mit elastischem Bounce
+                    animateScroll(cards, 0, 110, 700, easeOutElastic, () => {
+                        // ← zurück, smooth
                         setTimeout(() => {
-                            cards.style.scrollSnapType = '';
-                        }, 500);
-                    }, 520);
+                            animateScroll(cards, cards.scrollLeft, 0, 500, easeInOutCubic, () => {
+                                cards.style.scrollSnapType = '';
+                            });
+                        }, 100);
+                    });
                 }, 1000);
                 observer.disconnect();
             }
