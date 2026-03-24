@@ -312,15 +312,22 @@
             .three-images-grid {
                 display: flex;
                 overflow-x: auto;
+                scroll-snap-type: x mandatory;
                 gap: 15px;
                 padding: 10px 0;
                 grid-template-columns: none;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .three-images-grid::-webkit-scrollbar {
+                display: none;
             }
             
             .grid-image {
                 width: 250px;
                 height: 200px;
                 flex-shrink: 0;
+                scroll-snap-align: start;
             }
             
             .split-layout {
@@ -902,6 +909,35 @@ footer {
                 overflow-wrap: break-word;
             }
         }
+
+        /* Scroll Fade Wrapper — Mobile */
+        @media (max-width: 767px) {
+            .scroll-fade-wrapper {
+                position: relative;
+            }
+            .scroll-fade-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -20px;
+                width: 48px;
+                height: 100%;
+                background: linear-gradient(to right, #F5F5F0 42%, transparent);
+                pointer-events: none;
+                z-index: 5;
+            }
+            .scroll-fade-wrapper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 72px;
+                height: 100%;
+                background: linear-gradient(to right, transparent, #F5F5F0);
+                pointer-events: none;
+                z-index: 5;
+            }
+        }
     </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="aa9f9894-6f47-4a7b-aaa2-c86e8905bf03"></script>
 
@@ -1015,10 +1051,12 @@ Softwarelösungen.
             <img src="/projekte/Feinwerksoftware/Feinwerksoftware Branding.webp" alt="Hauptansicht" class="large-image" loading="lazy">
             
             <!-- Three Images Row -->
+            <div class="scroll-fade-wrapper">
             <div class="three-images-grid">
                 <img src="/projekte/Feinwerksoftware/Farben.webp" alt="Detail 1" class="grid-image" loading="lazy">
                 <img src="/projekte/Feinwerksoftware/Feinwerksoftware Mappe.webp" alt="Detail 2" class="grid-image" loading="lazy">
                 <img src="/projekte/Feinwerksoftware/Logo.webp" alt="Detail 3" class="grid-image" loading="lazy">
+            </div>
             </div>
             
             <!-- Split Layout: Image Left, Text Right -->
@@ -1251,5 +1289,44 @@ Softwarelösungen.
     observer.observe(btn);
 })();
 </script>
+
+    <script>
+    // Three Images Grid: Swipe-Tease (Mobile)
+    (function() {
+        if (window.innerWidth >= 768) return;
+        var grid = document.querySelector('.three-images-grid');
+        if (!grid) return;
+        function easeInOutSine(t) { return -(Math.cos(Math.PI * t) - 1) / 2; }
+        function animateScroll(el, from, to, duration, easingFn, done) {
+            var diff = to - from, start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                var p = Math.min((ts - start) / duration, 1);
+                el.scrollLeft = from + diff * easingFn(p);
+                if (p < 1) requestAnimationFrame(step);
+                else if (done) done();
+            }
+            requestAnimationFrame(step);
+        }
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        grid.style.scrollSnapType = 'none';
+                        animateScroll(grid, 0, 72, 600, easeInOutSine, function() {
+                            setTimeout(function() {
+                                animateScroll(grid, 72, 0, 600, easeInOutSine, function() {
+                                    grid.style.scrollSnapType = '';
+                                });
+                            }, 120);
+                        });
+                    }, 800);
+                    obs.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        obs.observe(grid);
+    })();
+    </script>
 </body>
 </html>

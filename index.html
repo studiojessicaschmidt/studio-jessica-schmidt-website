@@ -2424,10 +2424,21 @@ footer {
    SCROLL AFFORDANCE — KARUSSELLS (Mobile)
    ============================================ */
 
-/* Services: Fade-Gradient + Peek */
+/* Services + Testimonials: Fade-Gradient + Peek */
 @media (max-width: 767px) {
     .services {
         position: relative;
+    }
+    .services::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 36px;
+        height: 100%;
+        background: linear-gradient(to right, #F5F5F0, transparent);
+        pointer-events: none;
+        z-index: 5;
     }
     .services::after {
         content: '';
@@ -2452,7 +2463,32 @@ footer {
         flex: 0 0 78%;
     }
 
-    /* Testimonials: letzte Card angeschnitten */
+    /* Testimonials: Fade-Gradient + Peek */
+    .testimonials {
+        position: relative;
+    }
+    .testimonials::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 36px;
+        height: 100%;
+        background: linear-gradient(to right, #F5F5F0, transparent);
+        pointer-events: none;
+        z-index: 5;
+    }
+    .testimonials::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 72px;
+        height: 100%;
+        background: linear-gradient(to right, transparent, #F5F5F0);
+        pointer-events: none;
+        z-index: 5;
+    }
     .testimonials-grid {
         padding-right: 40px;
         scrollbar-width: none;
@@ -2463,6 +2499,17 @@ footer {
     }
     .testimonial-card {
         flex: 0 0 82%;
+    }
+}
+
+/* Testimonials: Tablet — Scrollbar verstecken */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .testimonials-grid {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .testimonials-grid::-webkit-scrollbar {
+        display: none;
     }
 }
 
@@ -3194,6 +3241,48 @@ startAutoPlay();
         });
     }, { threshold: 0.1 });
     observer.observe(cards);
+})();
+
+// Testimonials: Swipe-Tease (Mobile)
+(function() {
+    if (window.innerWidth >= 768) return;
+    const grid = document.querySelector('.testimonials-grid');
+    if (!grid) return;
+
+    function easeInOutSine(t) {
+        return -(Math.cos(Math.PI * t) - 1) / 2;
+    }
+    function animateScroll(el, from, to, duration, easingFn, done) {
+        const diff = to - from;
+        let start = null;
+        function step(ts) {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / duration, 1);
+            el.scrollLeft = from + diff * easingFn(p);
+            if (p < 1) requestAnimationFrame(step);
+            else if (done) done();
+        }
+        requestAnimationFrame(step);
+    }
+
+    const teaseObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    grid.style.scrollSnapType = 'none';
+                    animateScroll(grid, 0, 72, 600, easeInOutSine, () => {
+                        setTimeout(() => {
+                            animateScroll(grid, 72, 0, 600, easeInOutSine, () => {
+                                grid.style.scrollSnapType = '';
+                            });
+                        }, 120);
+                    });
+                }, 1000);
+                teaseObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.1 });
+    teaseObserver.observe(grid);
 })();
     </script>
 <script>
