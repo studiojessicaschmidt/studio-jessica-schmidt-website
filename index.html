@@ -2018,6 +2018,32 @@ footer {
 }
 
 
+/* Service Cards Dots (Mobile only) */
+.service-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 0 4px;
+}
+
+.service-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1.5px solid #2C1810;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.service-dot.active {
+    background-color: #2C1810;
+}
+
+@media (min-width: 768px) {
+    .service-dots { display: none; }
+}
+
 /* Portfolio Carousel Dots */
 .carousel-dots {
     display: flex;
@@ -2690,6 +2716,12 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
                     </svg></a>
                 </div>
             </div>
+            <!-- Service Dots — Mobile only -->
+            <div class="service-dots">
+                <div class="service-dot active" data-index="0"></div>
+                <div class="service-dot" data-index="1"></div>
+                <div class="service-dot" data-index="2"></div>
+            </div>
         </div>
     </section>
 <br>
@@ -3097,6 +3129,48 @@ dots.forEach(dot => {
 });
 
 startAutoPlay();
+
+// Service Cards — Dots + Swipe Tease (Mobile only)
+(function() {
+    if (window.innerWidth >= 768) return;
+
+    const cards = document.querySelector('.service-cards');
+    const serviceDots = document.querySelectorAll('.service-dot');
+    if (!cards || !serviceDots.length) return;
+
+    // Dot sync beim Scrollen
+    cards.addEventListener('scroll', function() {
+        const cardEl = cards.querySelector('.service-card');
+        const gap = parseInt(getComputedStyle(cards).gap) || 20;
+        const idx = Math.round(cards.scrollLeft / (cardEl.offsetWidth + gap));
+        serviceDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, { passive: true });
+
+    // Dot-Klick → zur Card scrollen
+    serviceDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            const cardEl = cards.querySelector('.service-card');
+            const gap = parseInt(getComputedStyle(cards).gap) || 20;
+            cards.scrollTo({ left: i * (cardEl.offsetWidth + gap), behavior: 'smooth' });
+        });
+    });
+
+    // Swipe-Tease — einmal wenn Section sichtbar wird
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    cards.scrollTo({ left: 72, behavior: 'smooth' });
+                    setTimeout(() => {
+                        cards.scrollTo({ left: 0, behavior: 'smooth' });
+                    }, 520);
+                }, 900);
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.35 });
+    observer.observe(cards);
+})();
     </script>
 <script>
 // Portfolio Carousel
