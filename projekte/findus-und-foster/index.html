@@ -896,6 +896,12 @@ footer {
                 padding-top: 55px;
                 background: #2C1810;
             }
+
+            /* Lange Wörter trennen statt Seite zu verbreiten */
+            h1, h2, h3, h4, h5, h6, p, .project-title {
+                hyphens: auto;
+                overflow-wrap: break-word;
+            }
         }
     </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="aa9f9894-6f47-4a7b-aaa2-c86e8905bf03"></script>
