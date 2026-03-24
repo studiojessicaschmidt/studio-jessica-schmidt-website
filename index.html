@@ -3104,7 +3104,7 @@ Hinterlasse mir eine Nachricht, ich melde mich innerhalb von 48 Stunden bei dir.
                 <input type="hidden" name="_subject" value="Neue Anfrage über studiojessicaschmidt.de">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://studiojessicaschmidt.de/#kontakt">
+                <input type="hidden" name="_next" value="https://studiojessicaschmidt.de/danke.html">
 
                 <div class="form-group">
                     <label for="form-vorname" class="sr-only">Vorname</label>
@@ -3186,39 +3186,8 @@ Hinterlasse mir eine Nachricht, ich melde mich innerhalb von 48 Stunden bei dir.
         });
 
         // Form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const form = this;
-            const formData = new FormData(form);
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-
-            fetch('https://formsubmit.co/ajax/hello@studiojessicaschmidt.de', {
-                method: 'POST',
-                headers: { 'Accept': 'application/json' },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success === 'true' || data.success === true) {
-                    document.getElementById('formError').style.display = 'none';
-                    document.getElementById('formSuccess').style.display = 'block';
-                    form.reset();
-                    setTimeout(() => {
-                        document.getElementById('formSuccess').style.display = 'none';
-                    }, 5000);
-                } else {
-                    document.getElementById('formError').style.display = 'block';
-                }
-            })
-            .catch(() => {
-                document.getElementById('formError').style.display = 'block';
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-            });
-        });
+        // Formular wird nativ an FormSubmit übermittelt (kein JS-Intercept)
+        // Nach Absenden → Weiterleitung zu /_danke via _next hidden field
 
 // CTA Button slide in on scroll
 window.addEventListener('scroll', () => {
