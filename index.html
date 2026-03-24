@@ -2452,13 +2452,16 @@ footer {
     }
     .service-cards {
         margin-left: -20px;
-        padding-right: 11vw; /* symmetrisch zur Spacer-Breite → letzte Karte zentriert */
+        padding-right: 0;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
-    /* Spacer für Service-Cards: 11vw = (100vw - 78vw) / 2 → erste Karte perfekt zentriert */
-    .service-cards .scroll-spacer {
+    /* Spacer Service-Cards: 11vw = (100vw - 78vw) / 2 → alle Karten exakt zentriert */
+    .service-cards .scroll-spacer,
+    .service-cards .scroll-trail {
         min-width: 11vw;
+        flex-shrink: 0;
+        align-self: stretch;
     }
     .service-cards::-webkit-scrollbar {
         display: none;
@@ -2541,6 +2544,63 @@ footer {
     /* 3) Portfolio-Dots — gleicher Abstand wie PORTFOLIO-Label zum Slider */
     .carousel-dots {
         padding: 20px 0 16px !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   KUND:INNEN LOGOS SECTION
+═══════════════════════════════════════════════ */
+.clients-section {
+    padding: 64px 0;
+    border-top: 1px solid rgba(44, 24, 16, 0.08);
+    border-bottom: 1px solid rgba(44, 24, 16, 0.08);
+}
+
+.clients-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.clients-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+}
+
+.client-logo-box {
+    width: 150px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.client-logo {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0) opacity(0.65);
+    transition: filter 0.25s ease;
+}
+
+.client-logo:hover {
+    filter: brightness(0) opacity(1);
+}
+
+@media (max-width: 767px) {
+    .clients-section {
+        padding: 44px 0;
+    }
+    .clients-logos {
+        gap: 28px;
+    }
+    .client-logo-box {
+        width: 110px;
+        height: 40px;
     }
 }
 </style>
@@ -2801,7 +2861,7 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
                 <!-- Projekt 2 -->
                 <div class="banner-slide">
                     <a href="/projekte/dash-89/" class="project-banner">
-                        <img src="/assets/Projekte/Jennys Zine/2.webp" alt="DASH 89" class="project-image" loading="lazy">
+                        <img src="/projekte/dash-89/DASH neues teaster bild.webp" alt="DASH 89" class="project-image" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-info">
                                 <h3>DASH 89</h3>
@@ -2847,6 +2907,29 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
 
             
     </section>
+<!-- Kund:innen Logos Section -->
+    <section class="clients-section">
+        <div class="container">
+            <div class="clients-intro">
+                <div class="section-label" style="justify-content: center; margin-bottom: 0;">
+                    <span class="orange-dot"></span>
+                    <span class="label-text">Wir arbeiten zusammen</span>
+                </div>
+            </div>
+            <div class="clients-logos">
+                <div class="client-logo-box">
+                    <img src="/logos/Feinwerksoftware_Wortbildmarke_positiv.svg" alt="Feinwerksoftware" class="client-logo">
+                </div>
+                <div class="client-logo-box">
+                    <img src="/logos/RNMS LOGO Original (Kreis).PNG" alt="RNMS" class="client-logo">
+                </div>
+                <div class="client-logo-box">
+                    <img src="/logos/hinz_software_header.png" alt="Hinz Software" class="client-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
 <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
