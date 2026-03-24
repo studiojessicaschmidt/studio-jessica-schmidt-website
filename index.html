@@ -3155,15 +3155,9 @@ startAutoPlay();
         });
     });
 
-    // Easing: easeOutElastic — echter Feder-Bounce
-    function easeOutElastic(t) {
-        const c4 = (2 * Math.PI) / 3;
-        return t === 0 ? 0 : t === 1 ? 1
-            : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-    }
-    // Easing: easeInOutCubic — smooth zurück
-    function easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    // Easing: easeInOutSine — sanft in beide Richtungen
+    function easeInOutSine(t) {
+        return -(Math.cos(Math.PI * t) - 1) / 2;
     }
 
     function animateScroll(el, from, to, duration, easingFn, done) {
@@ -3185,14 +3179,14 @@ startAutoPlay();
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     cards.style.scrollSnapType = 'none';
-                    // → nach rechts mit elastischem Bounce
-                    animateScroll(cards, 0, 110, 700, easeOutElastic, () => {
-                        // ← zurück, smooth
+                    // → sanft nach rechts
+                    animateScroll(cards, 0, 72, 600, easeInOutSine, () => {
+                        // kurze Pause, dann sanft zurück
                         setTimeout(() => {
-                            animateScroll(cards, cards.scrollLeft, 0, 500, easeInOutCubic, () => {
+                            animateScroll(cards, 72, 0, 600, easeInOutSine, () => {
                                 cards.style.scrollSnapType = '';
                             });
-                        }, 100);
+                        }, 120);
                     });
                 }, 1000);
                 observer.disconnect();
