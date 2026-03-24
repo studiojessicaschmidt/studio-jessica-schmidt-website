@@ -1166,7 +1166,7 @@ header {
 }
 
 .service-note {
-    font-size: 13px;
+    font-size: 12px;
     color: #2C1810;
     font-style: italic;
     margin-bottom: 24px;
@@ -1839,7 +1839,7 @@ footer {
     }
 
     .service-note {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .service-button {
@@ -3160,15 +3160,20 @@ startAutoPlay();
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
-                    cards.scrollTo({ left: 72, behavior: 'smooth' });
+                    // Scroll-Snap kurz deaktivieren damit die Animation sichtbar ist
+                    cards.style.scrollSnapType = 'none';
+                    cards.scrollTo({ left: 90, behavior: 'smooth' });
                     setTimeout(() => {
                         cards.scrollTo({ left: 0, behavior: 'smooth' });
+                        setTimeout(() => {
+                            cards.style.scrollSnapType = '';
+                        }, 500);
                     }, 520);
-                }, 900);
+                }, 1000);
                 observer.disconnect();
             }
         });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.1 });
     observer.observe(cards);
 })();
     </script>
