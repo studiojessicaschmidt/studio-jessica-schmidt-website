@@ -3188,21 +3188,36 @@ Hinterlasse mir eine Nachricht, ich melde mich innerhalb von 48 Stunden bei dir.
         // Form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Simulate form submission
-            const formData = new FormData(this);
-            
-            // Hide error, show success
-            document.getElementById('formError').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-            
-            // Reset form
-            this.reset();
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('formSuccess').style.display = 'none';
-            }, 5000);
+
+            const form = this;
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
+            fetch('https://formsubmit.co/ajax/hello@studiojessicaschmidt.de', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === 'true' || data.success === true) {
+                    document.getElementById('formError').style.display = 'none';
+                    document.getElementById('formSuccess').style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        document.getElementById('formSuccess').style.display = 'none';
+                    }, 5000);
+                } else {
+                    document.getElementById('formError').style.display = 'block';
+                }
+            })
+            .catch(() => {
+                document.getElementById('formError').style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+            });
         });
 
 // CTA Button slide in on scroll
