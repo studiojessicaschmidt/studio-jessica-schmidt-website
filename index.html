@@ -2398,21 +2398,43 @@ footer {
    SCROLL AFFORDANCE — KARUSSELLS (Mobile)
    ============================================ */
 
-/* Services: letztes Element leicht angeschnitten */
+/* Services: Fade-Gradient + Peek */
 @media (max-width: 767px) {
+    .services {
+        position: relative;
+    }
+    .services::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 72px;
+        height: 100%;
+        background: linear-gradient(to right, transparent, #F5F5F0);
+        pointer-events: none;
+        z-index: 5;
+    }
     .service-cards {
         padding-right: 40px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-
+    .service-cards::-webkit-scrollbar {
+        display: none;
+    }
     .service-card {
-        flex: 0 0 82%;
+        flex: 0 0 78%;
     }
 
     /* Testimonials: letzte Card angeschnitten */
     .testimonials-grid {
         padding-right: 40px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-
+    .testimonials-grid::-webkit-scrollbar {
+        display: none;
+    }
     .testimonial-card {
         flex: 0 0 82%;
     }
