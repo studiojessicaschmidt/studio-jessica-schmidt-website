@@ -2069,24 +2069,6 @@ footer {
     background-color: #2C1810;
 }
 @media (max-width: 767px) {
-    /* Portfolio Teaser — swipeable auf Mobile */
-    .portfolio-banner-full {
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    .portfolio-banner-full::-webkit-scrollbar { display: none; }
-    .banner-track {
-        transition: none; /* JS-Animation deaktiviert auf Mobile */
-        height: 100%;
-    }
-    .banner-slide {
-        scroll-snap-align: start;
-        height: 100%;
-    }
-
     .service-card {
         opacity: 1 !important;
         transform: none !important;
@@ -3264,21 +3246,16 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
-// Portfolio Banner — autoplay (Desktop) / swipe (Mobile)
+// Portfolio Banner — autoplay + swipe support
 const bannerTrack = document.querySelector('.banner-track');
 const bannerFull = document.querySelector('.portfolio-banner-full');
 const dots = document.querySelectorAll('.carousel-dot');
 let currentSlide = 0;
 let autoTimer;
-const isMobileBanner = window.innerWidth < 768;
 
 function goToSlide(index) {
     currentSlide = index;
-    if (isMobileBanner) {
-        bannerFull.scrollTo({ left: index * bannerFull.offsetWidth, behavior: 'smooth' });
-    } else {
-        bannerTrack.style.transform = `translateX(-${index * 33.333}%)`;
-    }
+    bannerTrack.style.transform = `translateX(-${index * 33.333}%)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === index));
 }
 
@@ -3292,22 +3269,28 @@ dots.forEach(dot => {
     dot.addEventListener('click', () => {
         clearInterval(autoTimer);
         goToSlide(parseInt(dot.dataset.index));
-        if (!isMobileBanner) startAutoPlay();
+        startAutoPlay();
     });
 });
 
-if (!isMobileBanner) {
+// Touch Swipe Support
+let touchStartX = 0;
+bannerFull.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+}, { passive: true });
+bannerFull.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) < 50) return; // kein Swipe
+    clearInterval(autoTimer);
+    if (diff > 0) {
+        goToSlide((currentSlide + 1) % dots.length); // → nächste
+    } else {
+        goToSlide((currentSlide - 1 + dots.length) % dots.length); // ← vorherige
+    }
     startAutoPlay();
-} else {
-    // Dots per Scroll synchronisieren
-    bannerFull.addEventListener('scroll', function() {
-        const idx = Math.round(bannerFull.scrollLeft / bannerFull.offsetWidth);
-        if (idx !== currentSlide) {
-            currentSlide = idx;
-            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-        }
-    }, { passive: true });
-}
+}, { passive: true });
+
+startAutoPlay();
 
 // Service Cards — Dots + Swipe Tease (Mobile only)
 (function() {
