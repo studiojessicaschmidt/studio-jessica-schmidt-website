@@ -2455,23 +2455,15 @@ footer {
     }
     .service-cards {
         margin-left: -20px;
-        margin-right: -20px;
-        padding-right: 0;
+        padding-right: 40px;
         scrollbar-width: none;
         -ms-overflow-style: none;
-    }
-    /* Spacer Service-Cards: 11vw = (100vw - 78vw) / 2 → alle Karten exakt zentriert */
-    .service-cards .scroll-spacer,
-    .service-cards .scroll-trail {
-        min-width: 11vw;
-        flex-shrink: 0;
-        align-self: stretch;
     }
     .service-cards::-webkit-scrollbar {
         display: none;
     }
     .service-card {
-        flex: 0 0 78%;
+        flex: 0 0 82%;
         scroll-snap-align: center;
     }
 
@@ -2846,7 +2838,6 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
                         <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg></a>
                 </div>
-                <div class="scroll-trail"></div>
             </div>
             <!-- Service Dots — Mobile only -->
             <div class="service-dots">
