@@ -3059,7 +3059,7 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
                 <div class="accordion-item">
                     <button class="accordion-header" aria-expanded="false">
                         <span class="accordion-step">02</span>
-                        <span class="accordion-title"><strong>Strategie + Richtung.</strong> <span class="accordion-title-sub">Fundament statt Bauchgefühl.</span></span>
+                        <span class="accordion-title"><strong>Strategie + Richtung.</strong> <span class="accordion-title-sub"><br>Fundament statt Bauchgefühl.</span></span>
                         <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -3077,7 +3077,7 @@ Anschließend mache ich mich auf die Suche nach Referenzen und sammle Ideen, dam
                 <div class="accordion-item">
                     <button class="accordion-header" aria-expanded="false">
                         <span class="accordion-step">03</span>
-                        <span class="accordion-title"><strong>Co‑Kreation + Umsetzung.</strong> <span class="accordion-title-sub">Iterativ, nachvollziehbar, zielorientiert.</span></span>
+                        <span class="accordion-title"><strong>Co‑Kreation + Umsetzung.</strong> <span class="accordion-title-sub"><br>Iterativ, nachvollziehbar, zielorientiert.</span></span>
                         <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -3327,15 +3327,20 @@ startAutoPlay();
         });
     });
 
-    // Swipe-Tease — eine einzige Sinus-Kurve: 0 → 72 → 0, keine Unterbrechung
+    // Swipe-Tease — Sinus 0→72→0, snap aus während Animation, kein Haken am Ende
     function animateTease(el, amplitude, duration) {
+        el.style.scrollSnapType = 'none';
         let start = null;
         function step(ts) {
             if (!start) start = ts;
             const p = Math.min((ts - start) / duration, 1);
             el.scrollLeft = amplitude * Math.sin(Math.PI * p);
-            if (p < 1) requestAnimationFrame(step);
-            else el.scrollLeft = 0;
+            if (p < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.scrollLeft = 0;
+                requestAnimationFrame(() => { el.style.scrollSnapType = ''; });
+            }
         }
         requestAnimationFrame(step);
     }
