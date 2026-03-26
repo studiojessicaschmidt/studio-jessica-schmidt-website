@@ -2627,6 +2627,16 @@ footer {
         height: 53px;
     }
 }
+@media (max-width: 767px) {
+    .contact h2 {
+        text-align: left;
+    }
+    .contact p {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="aa9f9894-6f47-4a7b-aaa2-c86e8905bf03"></script>
 </head>
@@ -3033,7 +3043,7 @@ Ich bringe mein Entwickler-Team mit und du hast eine Ansprechpartnerin.<br> <br>
                 <div class="accordion-item">
                     <button class="accordion-header" aria-expanded="false">
                         <span class="accordion-step">01</span>
-                        <span class="accordion-title"><strong>Passen wir zusammen?</strong> <span class="accordion-title-sub">30 minütiger Kennenlern‑Call.</span></span>
+                        <span class="accordion-title"><strong>Passen wir zusammen?</strong><br><span class="accordion-title-sub">30 minütiger Kennenlern‑Call.</span></span>
                         <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -3317,36 +3327,23 @@ startAutoPlay();
         });
     });
 
-    // Easing: easeInOutSine — sanft in beide Richtungen
-    function easeInOutSine(t) {
-        return -(Math.cos(Math.PI * t) - 1) / 2;
-    }
-
-    function animateScroll(el, from, to, duration, easingFn, done) {
-        const diff = to - from;
+    // Swipe-Tease — eine einzige Sinus-Kurve: 0 → 72 → 0, keine Unterbrechung
+    function animateTease(el, amplitude, duration) {
         let start = null;
         function step(ts) {
             if (!start) start = ts;
             const p = Math.min((ts - start) / duration, 1);
-            el.scrollLeft = from + diff * easingFn(p);
+            el.scrollLeft = amplitude * Math.sin(Math.PI * p);
             if (p < 1) requestAnimationFrame(step);
-            else if (done) done();
+            else el.scrollLeft = 0;
         }
         requestAnimationFrame(step);
     }
 
-    // Swipe-Tease — einmal wenn Section sichtbar wird
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    // → sanft nach rechts, dann zurück (kein snap-toggle nötig: nächster Snap-Punkt bei ~340px)
-                    animateScroll(cards, 0, 72, 600, easeInOutSine, () => {
-                        setTimeout(() => {
-                            animateScroll(cards, 72, 0, 600, easeInOutSine);
-                        }, 120);
-                    });
-                }, 1000);
+                setTimeout(() => animateTease(cards, 72, 1300), 1000);
                 observer.disconnect();
             }
         });
