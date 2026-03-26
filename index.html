@@ -3327,19 +3327,19 @@ startAutoPlay();
         });
     });
 
-    // Swipe-Tease — Sinus 0→72→0, snap aus während Animation, kein Haken am Ende
+    // Swipe-Tease — raised cosine: ease-in + ease-out, 0→amplitude→0
     function animateTease(el, amplitude, duration) {
-        el.style.scrollSnapType = 'none';
+        el.style.setProperty('scroll-snap-type', 'none', 'important');
         let start = null;
         function step(ts) {
             if (!start) start = ts;
             const p = Math.min((ts - start) / duration, 1);
-            el.scrollLeft = amplitude * Math.sin(Math.PI * p);
+            el.scrollLeft = amplitude * (1 - Math.cos(2 * Math.PI * p)) / 2;
             if (p < 1) {
                 requestAnimationFrame(step);
             } else {
                 el.scrollLeft = 0;
-                requestAnimationFrame(() => { el.style.scrollSnapType = ''; });
+                el.style.removeProperty('scroll-snap-type');
             }
         }
         requestAnimationFrame(step);
