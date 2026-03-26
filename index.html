@@ -2459,6 +2459,12 @@ footer {
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
+    /* Spacer: (100vw - 82vw) / 2 = 9vw → erste Karte exakt zentriert */
+    .service-cards .scroll-spacer {
+        min-width: 9vw;
+        flex-shrink: 0;
+        scroll-snap-align: none;
+    }
     .service-cards::-webkit-scrollbar {
         display: none;
     }
