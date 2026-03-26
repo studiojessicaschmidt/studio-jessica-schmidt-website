@@ -3340,14 +3340,10 @@ startAutoPlay();
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
-                    cards.style.scrollSnapType = 'none';
-                    // → sanft nach rechts
+                    // → sanft nach rechts, dann zurück (kein snap-toggle nötig: nächster Snap-Punkt bei ~340px)
                     animateScroll(cards, 0, 72, 600, easeInOutSine, () => {
-                        // kurze Pause, dann sanft zurück
                         setTimeout(() => {
-                            animateScroll(cards, 72, 0, 600, easeInOutSine, () => {
-                                cards.style.scrollSnapType = '';
-                            });
+                            animateScroll(cards, 72, 0, 600, easeInOutSine);
                         }, 120);
                     });
                 }, 1000);
