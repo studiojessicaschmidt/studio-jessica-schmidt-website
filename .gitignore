@@ -10,8 +10,5 @@
 # Fonts ZIP
 fonts/*.zip
 
-# Interne Dokumente (nicht öffentlich)
-projekte/Richtungs Wechsel Yoga Studio/
-
 # Zu große Mediendateien (>100 MB, nicht für Git geeignet)
 **/*.gif
