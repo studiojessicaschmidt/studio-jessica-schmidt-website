@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="139783c5-5196-4130-90bb-3d3d82ce6c0d" data-blockingmode="auto" type="text/javascript" async></script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über mich | Studio Jessica Schmidt</title>
+    <meta name="description" content="Jessica Schmidt — Kommunikationsdesignerin, Gründerin und Masterstudentin aus Bielefeld. Branding, Strategie und technische Umsetzung für Startups und Gründerinnen.">
+    <meta name="author" content="Jessica Schmidt">
+    <link rel="canonical" href="https://studiojessicaschmidt.de/ueber-mich/">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Über mich | Studio Jessica Schmidt">
+    <meta property="og:description" content="Kommunikationsdesignerin, Gründerin und Masterstudentin aus Bielefeld.">
+    <meta property="og:image" content="https://studiojessicaschmidt.de/Profilbild%20sw.webp">
+    <meta property="og:url" content="https://studiojessicaschmidt.de/ueber-mich/">
+    <meta property="og:site_name" content="Studio Jessica Schmidt">
+    <meta property="og:locale" content="de_DE">
+    <style>
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Light.otf') format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Medium.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+*:focus-visible { outline: 3px solid #FF6B35; outline-offset: 2px; }
+
+:root {
+    --primary-dark: #2C1810;
+    --primary-light: #F5F5F0;
+    --accent-orange: #FF6B35;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--primary-dark);
+    background-color: var(--primary-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+header {
+    padding: 0 0 28px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(44, 24, 16, 0.85);
+    backdrop-filter: blur(13px);
+    z-index: 1000;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.9) 72%, rgba(0,0,0,0.6) 83%, rgba(0,0,0,0.2) 93%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.9) 72%, rgba(0,0,0,0.6) 83%, rgba(0,0,0,0.2) 93%, transparent 100%);
+}
+.header-content { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
+.logo img { height: 60px; }
+.back-button {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px; background: transparent; color: #F5F5F0;
+    border: 2px solid #F5F5F0; text-decoration: none; border-radius: 30px;
+    font-weight: 500; font-size: 15px; letter-spacing: 0.1px;
+    transition: all 0.3s ease; font-family: 'Satoshi', sans-serif;
+    white-space: nowrap;
+}
+.back-button:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+.header-nav { display: none; }
+@media (min-width: 768px) {
+    .header-nav { display: flex; gap: 28px; align-items: center; }
+    .header-nav a { color: #F5F5F0; font-family: 'Satoshi', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; opacity: 0.8; transition: opacity 0.2s ease; white-space: nowrap; text-decoration: none; }
+    .header-nav a:hover { opacity: 1; }
+    .header-nav a.nav-active { opacity: 1; font-weight: 700; }
+}
+
+/* HERO */
+.page-hero {
+    padding: 140px 0 60px;
+}
+.page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.hero-text-block { max-width: 680px; }
+.hero-label {
+    display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px;
+}
+.orange-dot { width: 8px; height: 8px; background-color: var(--accent-orange); border-radius: 50%; flex-shrink: 0; }
+.label-text { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--primary-dark); font-family: 'Satoshi', sans-serif; }
+.page-hero h1 {
+    font-size: 48px; font-weight: 700; line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--primary-dark); margin-bottom: 24px;
+}
+.page-hero .lead {
+    font-size: 18px; line-height: 1.7; color: var(--primary-dark); max-width: 580px;
+}
+.hero-photo {
+    width: 100%; max-width: 400px;
+    border-radius: 16px; overflow: hidden;
+    border: 2px solid var(--primary-dark);
+    box-shadow: 8px 8px 32px rgba(44,24,16,0.12);
+    aspect-ratio: 3/4; object-fit: cover; display: block;
+}
+
+/* SECTIONS */
+main { flex: 1; }
+section { padding: 64px 0; }
+section + section { border-top: 1px solid rgba(44,24,16,0.12); }
+
+.section-label {
+    display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px;
+}
+.section-label .label-text { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; }
+
+h2.section-title {
+    font-size: 36px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 40px; color: var(--primary-dark);
+}
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(44,24,16,0.08);
+}
+.timeline-item:last-child { border-bottom: none; }
+.timeline-date {
+    font-size: 13px; font-weight: 600; color: rgba(44,24,16,0.5);
+    padding-top: 3px; line-height: 1.4;
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+.timeline-badge {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.2px; padding: 3px 10px;
+    border-radius: 20px; margin-bottom: 8px;
+}
+.badge-job { background: rgba(255,107,53,0.12); color: var(--accent-orange); }
+.badge-edu { background: rgba(44,24,16,0.08); color: var(--primary-dark); }
+.badge-award { background: rgba(44,24,16,0.05); color: var(--primary-dark); border: 1px solid rgba(44,24,16,0.2); }
+.timeline-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; color: var(--primary-dark); }
+.timeline-subtitle { font-size: 14px; font-weight: 600; color: rgba(44,24,16,0.6); margin-bottom: 8px; }
+.timeline-desc { font-size: 15px; line-height: 1.6; color: rgba(44,24,16,0.75); }
+
+/* SKILLS */
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+.skill-group { }
+.skill-group-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px;
+    color: rgba(44,24,16,0.5); margin-bottom: 16px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-tag {
+    padding: 8px 16px; border: 1.5px solid var(--primary-dark);
+    border-radius: 30px; font-size: 14px; font-weight: 500;
+    color: var(--primary-dark); background: transparent;
+    font-family: 'Satoshi', sans-serif;
+}
+.skill-tag.highlight {
+    background: var(--primary-dark); color: var(--primary-light);
+}
+.skill-tag.soon {
+    border-style: dashed; opacity: 0.6;
+}
+
+/* AWARDS */
+.awards-list { display: flex; flex-direction: column; gap: 20px; }
+.award-item {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 24px; background: #FAFAF9;
+    border: 1.5px solid rgba(44,24,16,0.1); border-radius: 12px;
+}
+.award-icon { font-size: 24px; flex-shrink: 0; }
+.award-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--primary-dark); }
+.award-issuer { font-size: 14px; color: rgba(44,24,16,0.6); }
+
+/* CTA */
+.cta-section {
+    background: var(--primary-dark);
+    border-radius: 20px; padding: 48px 32px; text-align: center; margin: 0 0 80px;
+}
+.cta-section h2 { font-size: 32px; font-weight: 700; color: var(--primary-light); margin-bottom: 16px; letter-spacing: -0.02em; }
+.cta-section p { font-size: 17px; color: rgba(245,245,240,0.75); margin-bottom: 32px; }
+.cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 36px; background: transparent; color: var(--primary-light);
+    border: 2px solid var(--primary-light); text-decoration: none;
+    border-radius: 30px; font-weight: 500; font-size: 16px;
+    font-family: 'Satoshi', sans-serif; transition: all 0.3s ease;
+}
+.cta-btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+/* FOOTER */
+footer { background-color: #2C1810; color: #F5F5F0; padding: 48px 0; position: relative; overflow: hidden; }
+.footer-content { display: flex; flex-direction: column; text-align: center; gap: 30px; align-items: center; }
+.footer-legal { display: flex; flex-direction: column; gap: 15px; }
+.footer-legal a { color: #F5F5F0; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; }
+.footer-legal a:hover { opacity: 1; }
+.footer-social { display: flex; gap: 20px; align-items: center; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; }
+.footer-social a img { width: 24px !important; height: 24px !important; opacity: 0.8; transition: opacity 0.3s ease, transform 0.3s ease; object-fit: contain; }
+.footer-social a:hover img { opacity: 1; transform: scale(1.1); }
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+    .container { padding: 0 40px; }
+    .logo img { height: 70px; }
+    .header-content { padding: 7px 0; }
+    .back-button { font-size: 16px; }
+    .page-hero { padding: 160px 0 80px; }
+    .page-hero-inner { flex-direction: row; align-items: flex-start; gap: 80px; }
+    .page-hero h1 { font-size: 64px; }
+    .hero-photo { max-width: 340px; flex-shrink: 0; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    h2.section-title { font-size: 48px; }
+    footer { padding: 60px 0; }
+    .footer-content { flex-direction: row; justify-content: space-between; text-align: left; gap: 40px; }
+    .footer-legal { flex-direction: row; gap: 30px; }
+    .orange-dot { width: 10px; height: 10px; }
+}
+@media (min-width: 1200px) {
+    .container { padding: 0 60px; }
+    .logo img { height: 80px; }
+    .header-content { padding: 8px 0; }
+    .page-hero h1 { font-size: 80px; }
+    .skills-grid { grid-template-columns: repeat(3, 1fr); }
+    h2.section-title { font-size: 56px; }
+    .orange-dot { width: 12px; height: 12px; }
+}
+@media (max-width: 767px) {
+    .logo img { height: 68px; }
+    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    .timeline-date { font-size: 12px; margin-bottom: 6px; }
+}
+    </style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="aa9f9894-6f47-4a7b-aaa2-c86e8905bf03"></script>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/"><img src="/assets/studio logo negativ_logo negativ.svg" alt="Studio Jessica Schmidt"></a>
+            </div>
+            <nav class="header-nav" aria-label="Hauptnavigation">
+                <a href="/#leistungen">Leistungen</a>
+                <a href="/projekte/">Portfolio</a>
+                <a href="/#kontakt">Kontakt</a>
+            </nav>
+            <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener" class="back-button">
+                Termin vereinbaren
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="hero-text-block">
+                    <div class="hero-label">
+                        <span class="orange-dot"></span>
+                        <span class="label-text">Über mich</span>
+                    </div>
+                    <h1>Design ist Haltung,<br>nicht Dekoration.</h1>
+                    <p class="lead">Ich bin Jessica — Kommunikationsdesignerin, Gründerin und Masterstudentin aus Bielefeld. Ich entwerfe Marken, die nicht nur gut aussehen, sondern Vertrauen schaffen und Entscheidungen beeinflussen.</p>
+                </div>
+                <img src="/Profilbild sw.webp" alt="Jessica Schmidt, Kommunikationsdesignerin" class="hero-photo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Werdegang -->
+    <section>
+        <div class="container">
+            <div class="section-label">
+                <span class="orange-dot"></span>
+                <span class="label-text">Werdegang</span>
+            </div>
+            <h2 class="section-title">Erfahrung &amp; Ausbildung</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 –<br>heute</div>
+                    <div>
+                        <span class="timeline-badge badge-job">Mitgliedschaft</span>
+                        <div class="timeline-title">Founders Foundation Startup School</div>
+                        <div class="timeline-subtitle">Batch #20 · Bielefeld</div>
+                        <div class="timeline-desc">Ausgewähltes Mitglied der renommierten Startup School der Founders Foundation — einem der führenden Gründungsprogramme in Deutschland. Fokus auf Entrepreneurship, B2B-Tech und unternehmerisches Mindset.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 –<br>heute</div>
+                    <div>
+                        <span class="timeline-badge badge-edu">Master</span>
+                        <div class="timeline-title">M.A. Kommunikationsdesign</div>
+                        <div class="timeline-subtitle">Hochschule Bielefeld</div>
+                        <div class="timeline-desc">Vertiefung in strategischem Design, Markenführung und der Schnittstelle zwischen Gestaltung und unternehmerischem Denken.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 –<br>heute</div>
+                    <div>
+                        <span class="timeline-badge badge-job">Freiberuflich</span>
+                        <div class="timeline-title">Kommunikationsdesignerin</div>
+                        <div class="timeline-subtitle">Studio Jessica Schmidt</div>
+                        <div class="timeline-desc">Branding, Strategie und technische Umsetzung für Gründerinnen und Startups. Von der ersten Positionierung bis zur fertigen Marke — mit eigenem Entwickler-Team im Hintergrund.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 –<br>2026</div>
+                    <div>
+                        <span class="timeline-badge badge-job">Gründerin</span>
+                        <div class="timeline-title">Findus &amp; Foster</div>
+                        <div class="timeline-subtitle">Vollzeit · Bielefeld</div>
+                        <div class="timeline-desc">Mitgründerin eines Startups im Bereich Design und Social Media. Verantwortlich für Marke, Kommunikation und digitale Umsetzung. Gefördert durch das Gründungsstipendium.NRW.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 –<br>2025</div>
+                    <div>
+                        <span class="timeline-badge badge-job">Gründerin</span>
+                        <div class="timeline-title">omne-design.studio</div>
+                        <div class="timeline-subtitle">Selbstständig</div>
+                        <div class="timeline-desc">Interdisziplinäres Design-Studio für Branding, Print und Digital — parallel zum Startup gegründet, um weiterhin an kreativen Projekten zu arbeiten.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr.–<br>Sept. 2024</div>
+                    <div>
+                        <span class="timeline-badge badge-job">Praktikum</span>
+                        <div class="timeline-title">Kommunikationsdesignerin</div>
+                        <div class="timeline-subtitle">Büro Paschetag · Bielefeld</div>
+                        <div class="timeline-desc">Praktische Erfahrung in Iconografie, Printmediendesign und weiteren Disziplinen in einem etablierten Designbüro.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 –<br>2025</div>
+                    <div>
+                        <span class="timeline-badge badge-edu">Bachelor</span>
+                        <div class="timeline-title">B.A. Kommunikationsdesign</div>
+                        <div class="timeline-subtitle">Hochschule Bielefeld</div>
+                        <div class="timeline-desc">Schwerpunkte: Motion Graphics, Printmedien und visuelle Kommunikation. Bachelorarbeit: KRAWALL — ein konzeptionelles Zine-Projekt zu gesellschaftlichem Aufruhr.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+        <div class="container">
+            <div class="section-label">
+                <span class="orange-dot"></span>
+                <span class="label-text">Skills &amp; Tools</span>
+            </div>
+            <h2 class="section-title">Was ich mitbringe</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <div class="skill-group-title">Design</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag highlight">Branding</span>
+                        <span class="skill-tag highlight">Printdesign</span>
+                        <span class="skill-tag">Motion Graphics</span>
+                        <span class="skill-tag">Editorial Design</span>
+                        <span class="skill-tag">UX / Interaction Design</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">Technologie</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag highlight">HTML &amp; CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag soon">Framer ↗</span>
+                        <span class="skill-tag">Web-Entwicklung</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">KI &amp; Strategie</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag highlight">KI-gestütztes Arbeiten</span>
+                        <span class="skill-tag">Anthropic / Claude</span>
+                        <span class="skill-tag soon">Anthropic Zertifizierung ↗</span>
+                        <span class="skill-tag">Brand Strategy</span>
+                        <span class="skill-tag">Positionierung</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">Entrepreneurship</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Startup-Erfahrung</span>
+                        <span class="skill-tag">Gründung &amp; Aufbau</span>
+                        <span class="skill-tag">Social Media</span>
+                        <span class="skill-tag">Pitching</span>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 24px; font-size: 13px; color: rgba(44,24,16,0.5); font-style: italic;">↗ = aktuell in Ausbildung</p>
+        </div>
+    </section>
+
+    <!-- Auszeichnungen -->
+    <section>
+        <div class="container">
+            <div class="section-label">
+                <span class="orange-dot"></span>
+                <span class="label-text">Auszeichnungen</span>
+            </div>
+            <h2 class="section-title">Anerkennungen &amp; Förderungen</h2>
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-icon">🥈</div>
+                    <div>
+                        <div class="award-title">MittelstandsMAKERTHON NRW — 2. Platz</div>
+                        <div class="award-issuer">NRW.BANK.Innovationspartner · Januar 2026</div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div>
+                        <div class="award-title">Gründungsstipendium.NRW</div>
+                        <div class="award-issuer">Projektträger Jülich · April 2025</div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">📚</div>
+                    <div>
+                        <div class="award-title">Brand Strategy for Designers</div>
+                        <div class="award-issuer">LinkedIn Learning</div>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🎓</div>
+                    <div>
+                        <div class="award-title">startklar OWL Businessplan Wettbewerb &amp; Workshops</div>
+                        <div class="award-issuer">Center for Entrepreneurship · Workshops: Pitch Perfect, Emotionale Kompetenz, Marketing, Vertrieb, Finanzierung</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="border-top: none; padding-top: 0;">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Lass uns zusammenarbeiten.</h2>
+                <p>Du hast eine Idee, ein Startup oder eine Marke die mehr sein soll als ein Logo — ich würde gerne davon hören.</p>
+                <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener" class="cta-btn">
+                    Termin vereinbaren ↗
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-legal">
+                <a href="/AGB-und-Datenschutz/">AGB und Datenschutz</a>
+                <a href="/Impressum/">Impressum</a>
+                <a href="/projekte/">Projekte</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/img_0237/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profil besuchen">
+                    <img src="/assets/logo_instagram.svg" alt="" aria-hidden="true" loading="lazy">
+                </a>
+                <a href="https://www.linkedin.com/in/jessica-schmidt-design/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profil besuchen">
+                    <img src="/assets/logo_linkenin.svg" alt="" aria-hidden="true" loading="lazy">
+                </a>
+                <a href="https://www.behance.net/studiojessicaschmidt" target="_blank" rel="noopener noreferrer" aria-label="Behance Portfolio besuchen">
+                    <img src="/assets/logo_behance.svg" alt="" aria-hidden="true" loading="lazy">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function(){
+  var ft = document.querySelector('footer');
+  if (!ft) return;
+  var gc = document.createElement('canvas');
+  gc.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;mix-blend-mode:screen;opacity:0.09;';
+  ft.appendChild(gc);
+  var gx = gc.getContext('2d');
+  function draw(){ var W=ft.offsetWidth,H=ft.offsetHeight; if(!W||!H)return; gc.width=Math.round(W); gc.height=Math.round(H); var id=gx.createImageData(gc.width,gc.height),d=id.data; for(var i=0;i<d.length;i+=4){var v=Math.random()*255|0;d[i]=v;d[i+1]=(v*0.85)|0;d[i+2]=(v*0.68)|0;d[i+3]=255;} gx.putImageData(id,0,0); }
+  draw(); window.addEventListener('resize',draw);
+})();
+(function(){
+  var hd = document.querySelector('header');
+  if (!hd) return;
+  var gc = document.createElement('canvas');
+  gc.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:0.09;';
+  hd.appendChild(gc);
+  var gx = gc.getContext('2d');
+  function draw(){ var W=hd.offsetWidth,H=hd.offsetHeight; if(!W||!H)return; gc.width=Math.round(W); gc.height=Math.round(H); var id=gx.createImageData(gc.width,gc.height),d=id.data; for(var i=0;i<d.length;i+=4){var v=Math.random()*255|0;d[i]=v;d[i+1]=(v*0.85)|0;d[i+2]=(v*0.68)|0;d[i+3]=255;} gx.putImageData(id,0,0); }
+  draw(); window.addEventListener('resize',draw);
+})();
+</script>
+</body>
+</html>

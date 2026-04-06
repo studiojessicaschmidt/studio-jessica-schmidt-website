@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="139783c5-5196-4130-90bb-3d3d82ce6c0d" data-blockingmode="auto" type="text/javascript" async></script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Studio Jessica Schmidt</title>
+    <meta name="description" content="Gedanken, Prozesse und Einblicke rund um Branding, Design und das Leben als Designerin und Gründerin — von Jessica Schmidt.">
+    <meta name="author" content="Jessica Schmidt">
+    <link rel="canonical" href="https://studiojessicaschmidt.de/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog | Studio Jessica Schmidt">
+    <meta property="og:description" content="Gedanken, Prozesse und Einblicke rund um Branding, Design und das Leben als Designerin und Gründerin.">
+    <meta property="og:image" content="https://studiojessicaschmidt.de/Profilbild%20sw.webp">
+    <meta property="og:url" content="https://studiojessicaschmidt.de/blog/">
+    <meta property="og:site_name" content="Studio Jessica Schmidt">
+    <meta property="og:locale" content="de_DE">
+    <style>
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Light.otf') format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Medium.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/fonts/Satoshi-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+*:focus-visible { outline: 3px solid #FF6B35; outline-offset: 2px; }
+
+:root {
+    --primary-dark: #2C1810;
+    --primary-light: #F5F5F0;
+    --accent-orange: #FF6B35;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--primary-dark);
+    background-color: var(--primary-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HEADER */
+header {
+    padding: 0 0 28px;
+    position: fixed; width: 100%; top: 0;
+    background: rgba(44, 24, 16, 0.85);
+    backdrop-filter: blur(13px);
+    z-index: 1000; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.9) 72%, rgba(0,0,0,0.6) 83%, rgba(0,0,0,0.2) 93%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.9) 72%, rgba(0,0,0,0.6) 83%, rgba(0,0,0,0.2) 93%, transparent 100%);
+}
+.header-content { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
+.logo img { height: 60px; }
+.back-button {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px; background: transparent; color: #F5F5F0;
+    border: 2px solid #F5F5F0; text-decoration: none; border-radius: 30px;
+    font-weight: 500; font-size: 15px; letter-spacing: 0.1px;
+    transition: all 0.3s ease; font-family: 'Satoshi', sans-serif; white-space: nowrap;
+}
+.back-button:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+.header-nav { display: none; }
+@media (min-width: 768px) {
+    .header-nav { display: flex; gap: 28px; align-items: center; }
+    .header-nav a { color: #F5F5F0; font-family: 'Satoshi', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; opacity: 0.8; transition: opacity 0.2s ease; white-space: nowrap; text-decoration: none; }
+    .header-nav a:hover { opacity: 1; }
+    .header-nav a.nav-active { opacity: 1; font-weight: 700; }
+}
+
+/* HERO */
+.page-hero { padding: 140px 0 64px; }
+.hero-label { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.orange-dot { width: 8px; height: 8px; background-color: var(--accent-orange); border-radius: 50%; flex-shrink: 0; }
+.label-text { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--primary-dark); font-family: 'Satoshi', sans-serif; }
+.page-hero h1 { font-size: 48px; font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; color: var(--primary-dark); margin-bottom: 20px; }
+.page-hero .lead { font-size: 18px; line-height: 1.7; color: rgba(44,24,16,0.7); max-width: 560px; }
+
+/* BLOG GRID */
+main { flex: 1; }
+.blog-section { padding: 0 0 80px; }
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.post-card {
+    background: #FAFAF9;
+    border: 2px solid var(--primary-dark);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 6px 6px 20px rgba(44,24,16,0.07);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(44,24,16,0.14); }
+
+.post-image {
+    width: 100%; height: 220px; object-fit: cover; display: block;
+    background: rgba(44,24,16,0.06);
+}
+.post-image-placeholder {
+    width: 100%; height: 220px;
+    background: linear-gradient(135deg, rgba(44,24,16,0.06) 0%, rgba(255,107,53,0.08) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+}
+
+.post-content { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+
+.post-meta {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+}
+.post-category {
+    display: inline-flex; align-items: center; gap: 8px;
+}
+.category-dot { width: 8px; height: 8px; background-color: var(--accent-orange); border-radius: 50%; }
+.category-text { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--primary-dark); font-family: 'Satoshi', sans-serif; }
+.post-date { font-size: 13px; color: rgba(44,24,16,0.45); font-weight: 500; }
+
+.post-title { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: var(--primary-dark); line-height: 1.2; }
+.post-excerpt { font-size: 15px; line-height: 1.65; color: rgba(44,24,16,0.7); flex: 1; margin-bottom: 24px; }
+
+.post-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; font-size: 14px; color: var(--primary-dark);
+    font-family: 'Satoshi', sans-serif; transition: all 0.3s ease;
+}
+.post-card:hover .post-link { color: var(--accent-orange); gap: 12px; }
+
+/* COMING SOON state */
+.post-card.coming-soon { opacity: 0.5; cursor: default; pointer-events: none; }
+.post-card.coming-soon:hover { transform: none; box-shadow: 6px 6px 20px rgba(44,24,16,0.07); }
+.coming-soon-badge {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    padding: 4px 12px; border-radius: 20px;
+    background: rgba(44,24,16,0.08); color: rgba(44,24,16,0.5);
+    margin-bottom: 12px;
+}
+
+/* FOOTER */
+footer { background-color: #2C1810; color: #F5F5F0; padding: 48px 0; position: relative; overflow: hidden; }
+.footer-content { display: flex; flex-direction: column; text-align: center; gap: 30px; align-items: center; }
+.footer-legal { display: flex; flex-direction: column; gap: 15px; }
+.footer-legal a { color: #F5F5F0; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; }
+.footer-legal a:hover { opacity: 1; }
+.footer-social { display: flex; gap: 20px; align-items: center; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; }
+.footer-social a img { width: 24px !important; height: 24px !important; opacity: 0.8; transition: opacity 0.3s ease, transform 0.3s ease; object-fit: contain; }
+.footer-social a:hover img { opacity: 1; transform: scale(1.1); }
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+    .container { padding: 0 40px; }
+    .logo img { height: 70px; }
+    .header-content { padding: 7px 0; }
+    .page-hero { padding: 160px 0 80px; }
+    .page-hero h1 { font-size: 72px; }
+    .posts-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { padding: 60px 0; }
+    .footer-content { flex-direction: row; justify-content: space-between; text-align: left; gap: 40px; }
+    .footer-legal { flex-direction: row; gap: 30px; }
+    .orange-dot { width: 10px; height: 10px; }
+}
+@media (min-width: 1200px) {
+    .container { padding: 0 60px; }
+    .logo img { height: 80px; }
+    .page-hero h1 { font-size: 96px; }
+    .posts-grid { grid-template-columns: repeat(3, 1fr); }
+    .orange-dot { width: 12px; height: 12px; }
+}
+@media (max-width: 767px) {
+    .logo img { height: 68px; }
+}
+    </style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="aa9f9894-6f47-4a7b-aaa2-c86e8905bf03"></script>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/"><img src="/assets/studio logo negativ_logo negativ.svg" alt="Studio Jessica Schmidt"></a>
+            </div>
+            <nav class="header-nav" aria-label="Hauptnavigation">
+                <a href="/#leistungen">Leistungen</a>
+                <a href="/projekte/">Portfolio</a>
+                <a href="/#kontakt">Kontakt</a>
+            </nav>
+            <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener" class="back-button">
+                Termin vereinbaren
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-label">
+                <span class="orange-dot"></span>
+                <span class="label-text">Blog</span>
+            </div>
+            <h1>Gedanken,<br>Prozesse, Einblicke.</h1>
+            <p class="lead">Über Branding, Design-Entscheidungen und das, was ich auf dem Weg als Designerin und Gründerin lerne.</p>
+        </div>
+    </section>
+
+    <!-- Posts -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="posts-grid">
+
+                <!-- Platzhalter 1 — wird bald befüllt -->
+                <div class="post-card coming-soon">
+                    <div class="post-image-placeholder">✏️</div>
+                    <div class="post-content">
+                        <span class="coming-soon-badge">Bald verfügbar</span>
+                        <div class="post-title">Erster Beitrag folgt in Kürze</div>
+                        <p class="post-excerpt">Hier erscheint bald der erste Blogpost. Themen rund um Branding, Designprozesse und Gründerinnen-Alltag.</p>
+                    </div>
+                </div>
+
+                <!-- Platzhalter 2 -->
+                <div class="post-card coming-soon">
+                    <div class="post-image-placeholder">🎨</div>
+                    <div class="post-content">
+                        <span class="coming-soon-badge">Bald verfügbar</span>
+                        <div class="post-title">Weiterer Beitrag folgt</div>
+                        <p class="post-excerpt">Mehr Inhalte sind in Vorbereitung — schau bald wieder rein oder folge mir auf Instagram für Updates.</p>
+                    </div>
+                </div>
+
+                <!-- Platzhalter 3 -->
+                <div class="post-card coming-soon">
+                    <div class="post-image-placeholder">💡</div>
+                    <div class="post-content">
+                        <span class="coming-soon-badge">Bald verfügbar</span>
+                        <div class="post-title">Weiterer Beitrag folgt</div>
+                        <p class="post-excerpt">Gedanken, Prozesse und Erkenntnisse aus der Praxis — als Designerin, Gründerin und Masterstudentin.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-legal">
+                <a href="/AGB-und-Datenschutz/">AGB und Datenschutz</a>
+                <a href="/Impressum/">Impressum</a>
+                <a href="/projekte/">Projekte</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/img_0237/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profil besuchen">
+                    <img src="/assets/logo_instagram.svg" alt="" aria-hidden="true" loading="lazy">
+                </a>
+                <a href="https://www.linkedin.com/in/jessica-schmidt-design/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profil besuchen">
+                    <img src="/assets/logo_linkenin.svg" alt="" aria-hidden="true" loading="lazy">
+                </a>
+                <a href="https://www.behance.net/studiojessicaschmidt" target="_blank" rel="noopener noreferrer" aria-label="Behance Portfolio besuchen">
+                    <img src="/assets/logo_behance.svg" alt="" aria-hidden="true" loading="lazy">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function(){
+  var ft=document.querySelector('footer'); if(!ft)return;
+  var gc=document.createElement('canvas');
+  gc.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;mix-blend-mode:screen;opacity:0.09;';
+  ft.appendChild(gc); var gx=gc.getContext('2d');
+  function draw(){var W=ft.offsetWidth,H=ft.offsetHeight;if(!W||!H)return;gc.width=Math.round(W);gc.height=Math.round(H);var id=gx.createImageData(gc.width,gc.height),d=id.data;for(var i=0;i<d.length;i+=4){var v=Math.random()*255|0;d[i]=v;d[i+1]=(v*0.85)|0;d[i+2]=(v*0.68)|0;d[i+3]=255;}gx.putImageData(id,0,0);}
+  draw();window.addEventListener('resize',draw);
+})();
+(function(){
+  var hd=document.querySelector('header'); if(!hd)return;
+  var gc=document.createElement('canvas');
+  gc.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:0.09;';
+  hd.appendChild(gc); var gx=gc.getContext('2d');
+  function draw(){var W=hd.offsetWidth,H=hd.offsetHeight;if(!W||!H)return;gc.width=Math.round(W);gc.height=Math.round(H);var id=gx.createImageData(gc.width,gc.height),d=id.data;for(var i=0;i<d.length;i+=4){var v=Math.random()*255|0;d[i]=v;d[i+1]=(v*0.85)|0;d[i+2]=(v*0.68)|0;d[i+3]=255;}gx.putImageData(id,0,0);}
+  draw();window.addEventListener('resize',draw);
+})();
+</script>
+</body>
+</html>
