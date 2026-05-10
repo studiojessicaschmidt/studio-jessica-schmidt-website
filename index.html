@@ -7,22 +7,22 @@
     <link rel="preload" href="/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="/fonts/Satoshi-Bold.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="/assets/studio logo negativ_logo negativ.svg" as="image">
-    <title>Studio Jessica Schmidt — Brand Strategie & Umsetzung</title>
-    <meta name="description" content="Studio Jessica Schmidt — Brand Strategie, UI Design & Entwicklung für Expert:innen. Dein Auftritt so klar wie deine Expertise. Onepager ab 1.200€.">
+    <title>Studio Jessica Schmidt — Kommunikationsdesign, Webdesign & Entwicklung</title>
+    <meta name="description" content="Studio Jessica Schmidt — Kommunikationsdesign, Webdesign und Entwicklung. Digitale Auftritte, die zeigen wer ein Unternehmen wirklich ist.">
     <meta name="author" content="Jessica Schmidt">
     <link rel="canonical" href="https://studiojessicaschmidt.de/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Studio Jessica Schmidt — Brand Strategie & Umsetzung">
-    <meta property="og:description" content="Dein Auftritt so klar wie deine Expertise. Brand Strategie, UI Design & Entwicklung für Berater:innen, Coaches, Therapeut:innen.">
+    <meta property="og:title" content="Studio Jessica Schmidt — Kommunikationsdesign, Webdesign & Entwicklung">
+    <meta property="og:description" content="Digitale Auftritte, die zeigen wer ein Unternehmen wirklich ist. Webdesign, Entwicklung und Branding.">
     <meta property="og:image" content="https://studiojessicaschmidt.de/Profilbild%20sw.webp">
     <meta property="og:url" content="https://studiojessicaschmidt.de/">
     <meta property="og:site_name" content="Studio Jessica Schmidt">
     <meta property="og:locale" content="de_DE">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Studio Jessica Schmidt — Brand Strategie & Umsetzung">
-    <meta name="twitter:description" content="Brand Strategie, UI Design & Entwicklung für Expert:innen. Onepager ab 1.200€..">
+    <meta name="twitter:title" content="Studio Jessica Schmidt — Kommunikationsdesign, Webdesign & Entwicklung">
+    <meta name="twitter:description" content="Digitale Auftritte, die zeigen wer ein Unternehmen wirklich ist. Webdesign, Entwicklung und Branding.">
     <meta name="twitter:image" content="https://studiojessicaschmidt.de/Profilbild%20sw.webp">
-    <meta name="keywords" content="Brand Strategie, UI Design, Website Entwicklung, Branding Experten, Berater Website, Coach Branding">
+    <meta name="keywords" content="Kommunikationsdesign, Webdesign, Website Entwicklung, Branding, Digitale Auftritte, Studio Jessica Schmidt">
 
     <script type="application/ld+json">
     {
@@ -522,25 +522,8 @@ header {
     height: 100vh;
     min-height: 600px;
     display: flex;
-    align-items: center;
     background: #2C1810;
-}
-
-.hero .container {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    max-width: 1200px;
-    width: 100%;
-    padding: 20px;
+    overflow: hidden;
 }
 
 
@@ -596,31 +579,9 @@ header {
     color: #2C1810;
 }
 
-#mesh-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: none; /* Animation deaktiviert — Solid bg via .hero background */
-    z-index: 1;
-}
+/* #mesh-bg entfernt — nicht mehr im neuen Hero-Layout */
 
-/* Text mit Schatten-Effekt */
-.hero h1,
-.hero-subtitle h3,
-.hero-subtitle .label-text {
-    color: #F5F5F0;
-    text-shadow: 
-        0 2px 4px #2C1810,
-        0 0 10px #2C1810;
-}
-
-.hero-subtitle .orange-dot {
-    background-color: #F5F5F0;
-    box-shadow: 0 0 5px #2C1810;
-}
-
-/* Ghost Button Anpassung für Hero (auf Video) */
+/* Ghost Button (behalten für andere Sektionen) */
 .ghost-button {
     background: rgba(44, 24, 16, 0.4);
     color: #F5F5F0;
@@ -632,86 +593,6 @@ header {
     background: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Tablet Styles */
-@media (min-width: 768px) {
-    .hero-content {
-        padding: 40px;
-    }
-    
-    .hero h1 {
-        font-size: 80px;
-        line-height: 120%;
-    }
-
-    .hero-subtitle h3 {
-        font-size: 24px;
-    }
-}
-
-/* Desktop Styles */
-@media (min-width: 1200px) {
-    .hero-content {
-        padding: 60px;
-    }
-    
-    .hero h1 {
-        font-size: 96px;
-    }
-
-    .hero-subtitle h3 {
-        font-size: 28px;
-    }
-}
-
-/* Hero Layout Anpassungen */
-.hero-container {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Tablet Styles */
-@media (min-width: 768px) {
-    .hero-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-    
-    .hero-content {
-        flex: 1;
-        padding-right: 40px;
-    }
-    
-    .hero-subtitle {
-        margin-top: 20px;
-    }
-    
-    .section-label {
-        margin-top: 0;
-        align-self: flex-start;
-    }
-}
-
-
-
-/* Hero Content Layout */
-.hero-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px 0;
-}
-
-.hero-main-content {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.hero-subtitle {
-    text-align: left;
 }
 
 
@@ -1106,6 +987,167 @@ header {
 }
 .services .container {
     padding-right: 0 !important;
+}
+
+.services-intro {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #2C1810;
+    max-width: 640px;
+    padding: 0 20px;
+    opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+    .services-intro {
+        font-size: 17px;
+        padding: 0 40px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .services-intro {
+        font-size: 18px;
+        padding: 0 60px;
+        max-width: 720px;
+    }
+}
+
+/* Leistungen — Split Layout (Headline links, Text rechts) */
+.services--split .container {
+    padding-right: 20px !important;
+}
+
+.service-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 20px;
+    border-top: 1px solid rgba(44, 24, 16, 0.12);
+}
+
+.service-row:first-child {
+    border-top: none;
+}
+
+/* Studien-Links — dezent */
+.stat-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: #FF6B35;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 2px;
+    transition: text-decoration-color 0.2s ease;
+}
+
+.stat-link:hover {
+    text-decoration-color: #2C1810;
+}
+
+/* Intro zentriert */
+.service-intro-centered {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+}
+
+.service-intro-centered .service-row__headline {
+    margin-bottom: 24px;
+}
+
+.service-intro-centered p {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #2C1810;
+    opacity: 0.8;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .service-intro-centered {
+        padding: 40px 40px 56px;
+    }
+    .service-intro-centered p {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .service-intro-centered {
+        padding: 48px 60px 64px;
+        max-width: 900px;
+    }
+    .service-intro-centered p {
+        font-size: 18px;
+    }
+}
+
+.service-row__headline {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #2C1810;
+    margin: 0;
+}
+
+/* Desktop: gleiche Größe wie About h2 */
+@media (min-width: 1200px) {
+    .service-row__headline {
+        font-size: 72px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .service-row__headline {
+        font-size: 48px;
+    }
+}
+
+.service-row__right p {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #2C1810;
+    opacity: 0.8;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .service-row {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 40px 40px;
+    }
+
+    .service-row__left {
+        width: 45%;
+        flex-shrink: 0;
+    }
+
+    .service-row__right {
+        width: 55%;
+    }
+
+    .service-row__right p {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .service-row {
+        padding: 48px 60px;
+        gap: 60px;
+    }
+
+    .service-row__right p {
+        font-size: 18px;
+    }
 }
 
 .service-cards {
@@ -2171,250 +2213,100 @@ footer {
 }
 
 /* ============================================
-   HERO INTRO TYPEWRITER
+   HERO SPLIT 50/50 — Logo + Karten-Stapel
    ============================================ */
 
-#hero-intro {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
+.hero--split {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+/* --- Linke Seite: Logo --- */
+.hero-brand {
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    pointer-events: none;
-    transition: opacity 0.7s ease;
-    font-family: 'Satoshi', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #F5F5F0;
-    letter-spacing: 0.01em;
+    padding: 60px;
 }
 
-.hero-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: #FF6B35;
-    margin-left: 2px;
-    vertical-align: middle;
-    animation: heroCursorBlink 0.8s step-end infinite;
+.hero-brand__logo {
+    width: clamp(200px, 22vw, 380px);
+    height: auto;
 }
 
-@keyframes heroCursorBlink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
+/* --- Rechte Seite: Karten-Stapel --- */
+.hero-projects {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    background: #2C1810;
 }
 
-/* ============================================
-   HERO MAIN — NEUES LAYOUT (post-intro)
-   ============================================ */
+.hero-projects__stack {
+    position: relative;
+    width: 65%;
+    aspect-ratio: 3 / 4;
+    max-height: 75vh;
+}
 
-#hero-main {
+/* Karten — Stop-Motion Stapel */
+.hero-card {
     position: absolute;
     inset: 0;
-    z-index: 3;
-    transition: opacity 0.8s ease;
+    border-radius: 4px;
     overflow: hidden;
-    pointer-events: none;
-}
-
-#hero-main.revealed {
-    pointer-events: auto;
-}
-
-/* WÖRTER — rechts, groß */
-#hero-words {
-    position: absolute;
-    right: clamp(32px, 5vw, 80px);
-    top: clamp(100px, 10.5vh, 128px);
-    text-align: right;
-}
-
-.hero-word {
-    display: block;
-    font-family: 'Satoshi', sans-serif;
-    font-size: clamp(52px, 11.5vw, 160px);
-    font-weight: 700;
-    line-height: 1.01;
-    color: #F5F5F0;
     opacity: 0;
-    transform: translateY(-70px);
+    visibility: hidden;
+    will-change: transform;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    /* Kein transition — harter Schnitt, Stop-Motion */
 }
 
-@media (max-width: 767px) {
-    .hero-word { line-height: 1.07; }
-}
+/* Jede Karte bekommt eine eigene Schräge */
+.hero-card[data-index="0"] { transform: rotate(-3deg); }
+.hero-card[data-index="1"] { transform: rotate(2.5deg); }
+.hero-card[data-index="2"] { transform: rotate(-1.8deg); }
+.hero-card[data-index="3"] { transform: rotate(3.2deg); }
 
-.hero-word.animate {
-    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+/* Aktive Karte — sichtbar, 100% */
+.hero-card--active {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
 }
 
-/* CTA BUTTON — rechts, direkt unter den Wörtern */
-#hero-cta-main {
-    position: absolute;
-    right: clamp(32px, 5vw, 80px);
-    /* Folgt Wörtern — sitzt direkt unter letztem Wort */
-    top: clamp(370px, 52vh, 545px);
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 28px;
-    border: 1.5px solid #FF6B35;
-    border-radius: 30px;
-    color: #FF6B35;
-    font-family: 'Satoshi', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: 0.1px;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.5s ease, transform 0.5s ease,
-                background 0.25s ease, color 0.25s ease;
-}
-
-#hero-cta-main:hover {
-    background: #FF6B35;
-    color: #2C1810;
-    transform: translateY(-2px) !important;
-}
-
-#hero-cta-main.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#hero-cta-main.wobble {
-    animation: btn-wobble 1.3s linear both;
-    transition: opacity 0.5s ease, background 0.25s ease, color 0.25s ease;
-}
-
-@keyframes btn-wobble {
-    0%   { transform: translate(0px,    0px)    rotate(0deg);    }
-    7%   { transform: translate(-1px,   0.5px)  rotate(0.3deg);  }
-    15%  { transform: translate(1.5px,  -0.8px) rotate(-0.5deg); }
-    23%  { transform: translate(-2.2px, 1.1px)  rotate(0.7deg);  }
-    31%  { transform: translate(2px,    -1.3px) rotate(-0.6deg); }
-    39%  { transform: translate(-1.8px, 0.9px)  rotate(0.5deg);  }
-    47%  { transform: translate(1.4px,  -0.7px) rotate(-0.4deg); }
-    55%  { transform: translate(-1px,   0.5px)  rotate(0.3deg);  }
-    63%  { transform: translate(0.7px,  -0.4px) rotate(-0.2deg); }
-    71%  { transform: translate(-0.5px, 0.3px)  rotate(0.15deg); }
-    80%  { transform: translate(0.3px,  -0.2px) rotate(-0.08deg);}
-    90%  { transform: translate(-0.1px, 0.1px)  rotate(0.03deg); }
-    100% { transform: translate(0px,    0px)    rotate(0deg);    }
-}
-
-/* TAGLINE — unten links */
-#hero-tagline {
-    position: absolute;
-    left: clamp(32px, 5vw, 91px);
-    bottom: clamp(55px, 9vh, 110px);
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    max-width: 44vw;
-}
-
-#hero-tagline .orange-dot {
-    margin-top: 8px;
-    flex-shrink: 0;
-}
-
-#hero-tagline p {
-    font-family: 'Satoshi', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.35;
-    color: #F5F5F0;
-    letter-spacing: 0.01em;
-    margin: 0;
-}
-
-#hero-tagline.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* HANDSCHRIFT — unten rechts (Desktop only) */
-#hero-handwritten {
-    position: absolute;
-    right: clamp(32px, 5vw, 80px);
-    bottom: clamp(55px, 9vh, 110px);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    width: clamp(148px, 14.74vw, 216px); /* Tablet: +8% */
-    display: none; /* Mobile versteckt */
-}
-
-@media (min-width: 768px) {
-    #hero-handwritten { display: block; }
-}
-
-#hero-handwritten.animate {
-    opacity: 0.9;
-}
-
-#handschrift-img {
+.hero-card img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    /* clip-path entfernt sobald PNG zugeschnitten ist */
 }
 
-/* Desktop — präzise Werte (1200px+) */
-@media (min-width: 1200px) {
-    #hero-words {
-        right: 80px;
-        top: 110px;
-    }
-    .hero-word {
-        font-size: 155px;
-        line-height: 0.99;
-    }
-    #hero-cta-main {
-        right: 80px;
-        top: 635px;
-        bottom: auto;
-    }
-    #hero-tagline {
-        left: 91px;
-        bottom: 100px;
-        max-width: 420px;
-    }
-    #hero-tagline p {
-        font-size: 18px;
-    }
-    #hero-handwritten {
-        right: 80px;
-        bottom: 100px;
-        width: 222px; /* +8% Desktop */
-    }
-}
-
-/* Mobile — sauberes Stacking (< 768px) */
+/* Mobile Hero (< 768px) — vertikal gestapelt */
 @media (max-width: 767px) {
-    #hero-cta-main {
-        top: auto;
-        bottom: 88px;   /* Über Scroll-Pfeil (32px) mit ausreichend Abstand */
-        right: 24px;
-        left: 24px;
-        justify-content: center;
+    .hero--split {
+        flex-direction: column;
     }
-    #hero-tagline {
-        bottom: 190px;  /* Direkt über CTA */
-        left: 24px;
-        max-width: 72vw;
+
+    .hero-brand {
+        display: none; /* Header zeigt Logo bereits */
     }
-    #hero-tagline p {
-        font-size: 14px;
+
+    .hero-projects {
+        width: 100%;
+        flex: 1;
+        min-height: 85vh;
+    }
+
+    .hero-projects__stack {
+        width: 78%;
+        max-height: 70%;
     }
 }
 
@@ -2661,37 +2553,34 @@ footer {
     </header>
 
 <main>
-<!-- Hero Section -->
-<h1 class="sr-only">Studio Jessica Schmidt — Branding, Strategie und Umsetzung</h1>
-<section class="hero">
-    <canvas id="mesh-bg"></canvas>
+<!-- Hero Section — Split 50/50, Logo links, Karten-Stapel rechts -->
+<h1 class="sr-only">Studio Jessica Schmidt — Kommunikationsdesign, Webdesign und Entwicklung</h1>
+<section class="hero hero--split">
 
-    <div id="hero-intro">
-        <span id="hero-intro-text"></span><span class="hero-cursor"></span>
+    <!-- Links: Logo -->
+    <div class="hero-brand">
+        <img src="/assets/studio logo negativ_logo negativ.svg" alt="Studio Jessica Schmidt" class="hero-brand__logo">
     </div>
 
-    <!-- Hero Main Content (revealed after typewriter intro) -->
-    <div id="hero-main" style="opacity:0">
-
-        <!-- Riesige Wörter rechts -->
-        <div id="hero-words">
-            <span class="hero-word">Dein Auftritt,<br>so klar wie deine Expertise.</span>
+    <!-- Rechts: Karten-Stapel mit Projektbildern -->
+    <a href="#portfolio" class="hero-projects" id="heroProjects" aria-label="Projekte ansehen">
+        <div class="hero-projects__stack">
+            <div class="hero-card hero-card--active" data-index="0">
+                <img src="/projekte/Die-Roboterwerkstatt/Roboterwerkstatt Visitenkarten.webp" alt="Die Roboterwerkstatt" loading="eager">
+            </div>
+            <div class="hero-card" data-index="1">
+                <img src="/projekte/dash-89/DASH%20neues%20teaster%20bild.webp" alt="DASH 89" loading="lazy">
+            </div>
+            <div class="hero-card" data-index="2">
+                <img src="/projekte/Badezimmerspiegel/Baran Beats Badezimmer Spiegel Platte Mockup 2.webp" alt="Badezimmerspiegel" loading="lazy">
+            </div>
+            <div class="hero-card" data-index="3">
+                <img src="/projekte/krawall/Krawall Plakat.webp" alt="Krawall" loading="lazy">
+            </div>
         </div>
+    </a>
 
-        <!-- CTA Button rechts -->
-        <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener"
-           id="hero-cta-main">Termin buchen</a>
-
-        <!-- Tagline unten links -->
-        <div id="hero-tagline">
-            <span class="orange-dot"></span>
-            <p>Brand Strategie & Umsetzung für Expert:innen</p>
-        </div>
-
-
-
-    </div>
-    
+    <!-- Scroll Indicator -->
     <div class="scroll-indicator" onclick="document.getElementById('wieso-wir').scrollIntoView({behavior:'smooth'})">
         <span></span>
         <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -2705,7 +2594,7 @@ footer {
 <div class="about-intro" id="wieso-wir">
     <div class="section-label">
         <span class="orange-dot"></span>
-        <span class="label-text">Wieso ich dir helfen kann</span>
+        <span class="label-text">Über mich</span>
     </div>
 </div>
 
@@ -2722,10 +2611,9 @@ footer {
         </div>
 
         <div class="about-right">
-            <h2>Für Marken, die mehr als ein Logo sind.</h2>
-            <p>Du weißt was du kannst. Dein Auftritt zeigt das noch nicht. Das ist kein Ästhetik-Problem, das ist ein Klarheitsproblem. Und genau da setze ich an. Design ist für mich ein Werkzeug, um Charakter und Positionierung von Marken sichtbar zu machen.<br>
-                Du hast keine Zeit für endlose Theorie-Schleifen oder undurchsichtige Prozesse.</p>
-            <p>Als Brand-Strategin mit Startup-Erfahrung verbinde ich Wissen in Business, Design und KI. Ich bringe mein Entwicklerteam mit, und du bekommst nach der Zusammenarbeit die Mittel an die Hand, mit denen du selbst weiterarbeiten kannst.</p>
+            <h2>Hi!</h2>
+            <p>Ich bin Jessica Schmidt, Kommunikationsdesignerin und Inhaberin von studio jessica schmidt. Ich gestalte und entwickle digitale Auftritte, die zeigen wer ein Unternehmen wirklich ist.</p>
+            <p>Neben dem Studio arbeite ich an eigenen Ideen und Projekten. Ich weiß, wie es sich anfühlt, ein Unternehmen nach außen aufzustellen. Diese Perspektive bringe ich in jede Zusammenarbeit.</p>
         </div>
     </div>
 </section>
@@ -2733,128 +2621,50 @@ footer {
 <div class="about-intro">
     <div class="section-label">
         <span class="orange-dot"></span>
-        <span class="label-text">Wie ich dir helfen kann</span>
+        <span class="label-text">Leistungen</span>
     </div>
 </div>
 
-    <!-- Services Section -->
-    <section class="services" id="leistungen">
+    <!-- Services Section — Split Layout -->
+    <section class="services services--split" id="leistungen">
         <div class="container">
-            
-            <div class="service-cards">
-                <div class="scroll-spacer"></div>
-                <!-- Clarity Check -->
-                <div class="service-card">
-                    <h3>Klarheit</h3>
-                    <h4>490€</h4>
-                    <p>Du weißt, was du kannst. Aber dein Auftritt zeigt das noch nicht klar genug. 
-Wir bauen dir Klarheit, die für dich arbeitet.<br>
-                   <br><strong>Was danach anders ist</strong></p><br>
-                    
-                    <ul class="service-list">
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Deine Positionierung ist klar</strong> <br> 
-                                Du weißt exakt, wer du bist, für wen du da bist und warum deine Lösung jetzt relevant ist. Kein Raten mehr.</span>
-                        </li>
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Deine Kernbotschaft steht</strong> <br>
-                                Ein Satz, der dein Angebot so präzise beschreibt, dass jeder sofort versteht, warum er mit dir sprechen sollte.</span>
-                        </li>
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Du bleibst im Fokus:</strong> Du bekommst zwei KI-Assistenten: 
-    <strong>deine Strategie-Persona</strong> hält dich bei der Kernbotschaft, 
-    <strong>deine Ideal-Kund:in</strong> gibt direktes Feedback wann immer du 
-    brauchst. Immer verfügbar, immer ehrlich.</span></span>
-                        </li>
-                    </ul>
-                    
-                    <p class="service-note">Geschätzte Dauer: 1 – 2 Wochen.<br> Du buchst danach das Identität Paket? Das Investment wird innerhalb von 14 Tagen zu 100% angerechnet.</p>
-                    
-                  <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener" class="service-button">Kennenlerngespräch vereinbaren <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg></a>
-                </div>
 
-                <!-- Brand Sprint -->
-                <div class="service-card">
-                    <h3>Marken Identität</h3>
-                    <h4>3.500€</h4>
-                    <p>Deine Qualität ist unbestritten. Dein Auftritt zeigt das noch nicht. 
-Wir bauen das visuelle System, das deine Expertise sichtbar macht. <br> <br><strong>Was danach anders ist</strong></p>
-                    <br>
-                    <ul class="service-list">
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Du weißt wo du stehst und warum</strong> <br>
-                                Klare Positionierung, Wettbewerbsanalyse und eine Branding-Basis die nicht nur heute funktioniert sondern skalierbar ist wenn du wächst.</span>
-                        </li>
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Dein Auftritt zeigt deine Individualität</strong> <br>
-                                Logo-System, Farbpalette, Schrift, Bildsprache. Alles abgestimmt und 
-        in einem klaren Brandguide dokumentiert, den dein Team sofort nutzen kann. </span>
-                        </li>
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Dein Team kann ohne dich weiterarbeiten</strong><br>
-                                Alles ist digital, KI-ready strukturiert und dokumentiert. 
-        Neue Teammitglieder oder Agenturen finden sofort alles. Du kannst sofort ohne mich weiter arbeiten.</span>
-                        </li>
-                        
-                    </ul>
-                    
-                    <p class="service-note"> Geschätzte Dauer: 4 – 6 Wochen.<br>Zwei Revisionsschleifen inklusive.</p>
-                    
-                    <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener" class="service-button">Kennenlerngespräch vereinbaren <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg></a>
-                </div>
+            <!-- Intro — zentriert -->
+            <div class="service-intro-centered">
+                <h2 class="service-row__headline"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4863498/" target="_blank" rel="noopener" class="stat-link">75 %</a> der Nutzerinnen beurteilen Glaubwürdigkeit primär anhand des Designs.</h2>
+                <p>Unternehmen mit starkem Design wachsen laut McKinsey <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-business-value-of-design" target="_blank" rel="noopener" class="stat-link">32 %</a> schneller als ihre Mitbewerber. Eine Website ist kein Schaufenster, das irgendwie aussehen soll. Sie ist das wirksamste Instrument, das ein Unternehmen nach außen hat.</p>
+            </div>
 
-                <!-- Umsetzung -->
-                <div class="service-card">
-                    <h3>Website & Entwicklung</h3>
-                    <h4></h4>
-                    <p>Du weißt, was du kannst. Jetzt braucht dein Auftritt die passende Bühne. 
-Du hast eine Ansprechpartnerin, ich koordiniere mein Entwickler Team und du musst dich nicht mit Technik beschäftigen.<br> <br><strong>Was danach anders ist</strong>  </p>
-                    <br>
-                    <ul class="service-list">
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Du wirkst auch online professionell</strong> <br>
-                               Strategisch aufgebaute Website, die deine Expertise vermittelt. Onepager 
-        für schnellen Start oder vollständige Struktur.</span>
-                        </li>
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Technische Umsetzung</strong> <br>
-                                Shopsysteme, kundenspezifische Schnittstellen, Landing Pages oder 
-        Profile. Wir lösen technische Herausforderungen.</span>
-                        </li>
-                        <li>
-                            <img src="/assets/arrow icon.svg" alt="Check">
-                            <span><strong>Individuelle Software-Lösungen</strong> <br>
-                                Wenn Standard-Tools nicht passen, entwickeln wir maßgeschneiderte 
-        Anwendungen genau auf deine Prozesse zugeschnitten.</span>
-                        </li>
-                    </ul>
-                    
-                    <p class="service-note">Investition nach kostenlosem Erstgespräch individuell abgestimmt. Onepager ab 1.200€ | Vollständige Website ab 4.500€
-</p>
-                    
-                    <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener" class="service-button">Kennenlerngespräch vereinbaren <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg></a>
+            <!-- Webdesign -->
+            <div class="service-row">
+                <div class="service-row__left">
+                    <h3 class="service-row__headline">Webdesign</h3>
+                </div>
+                <div class="service-row__right">
+                    <p>Ich entwerfe digitale Auftritte, die zum Unternehmen passen und für die Menschen gedacht sind, die sie nutzen. UX ist dabei Grundlage, nicht Nachgedanke.</p>
                 </div>
             </div>
-            <!-- Service Dots — Mobile only -->
-            <div class="service-dots">
-                <div class="service-dot active" data-index="0"></div>
-                <div class="service-dot" data-index="1"></div>
-                <div class="service-dot" data-index="2"></div>
+
+            <!-- Entwicklung -->
+            <div class="service-row">
+                <div class="service-row__left">
+                    <h3 class="service-row__headline">Entwicklung</h3>
+                </div>
+                <div class="service-row__right">
+                    <p>Mit einem eingespielten Entwicklerteam setze ich um, was entworfen wurde. Websites, Shopsysteme, Web-Apps: sauber gebaut, performant, bis zur Live-Schaltung begleitet.</p>
+                </div>
             </div>
+
+            <!-- Branding -->
+            <div class="service-row">
+                <div class="service-row__left">
+                    <h3 class="service-row__headline">Branding</h3>
+                </div>
+                <div class="service-row__right">
+                    <p>Ein überzeugender Webauftritt braucht eine klare Marke dahinter. Wenn das Fundament noch fehlt oder überarbeitet werden soll, arbeite ich auch auf der strategischen Ebene: Positionierung, visuelles System, Markenstimme.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 <br>
@@ -3027,7 +2837,7 @@ Du hast eine Ansprechpartnerin, ich koordiniere mein Entwickler Team und du muss
             <div class="process-intro">
                 <div class="section-label">
                     <span class="orange-dot"></span>
-                    <span class="label-text">Wie wir zusammen arbeiten</span>
+                    <span class="label-text">So läuft es ab</span>
                 </div>
             </div>
 
@@ -3037,15 +2847,14 @@ Du hast eine Ansprechpartnerin, ich koordiniere mein Entwickler Team und du muss
                 <div class="accordion-item">
                     <button class="accordion-header" aria-expanded="false">
                         <span class="accordion-step">01</span>
-                        <span class="accordion-title"><strong>Passen wir zusammen?</strong><br><span class="accordion-title-sub">Kostenfreier 30 minütiger Kennenlern‑Call.</span></span>
+                        <span class="accordion-title"><strong>Kennenlernen</strong><br><span class="accordion-title-sub">Ein kostenloses 30-Minuten-Gespräch.</span></span>
                         <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                     <div class="accordion-body">
                         <div class="accordion-body-inner">
-                            <p>Gemeinsam klären wir, ob meine Lösungen zu deinen Herausforderungen passen 
-und wir eine Zusammenarbeit sehen können. <br>So wissen wir beide genau, was machbar ist.</p>
+                            <p>Ohne Agenda außer einer: herausfinden ob das Projekt und die Zusammenarbeit passen.</p>
                         </div>
                     </div>
                 </div>
@@ -3054,19 +2863,14 @@ und wir eine Zusammenarbeit sehen können. <br>So wissen wir beide genau, was ma
                 <div class="accordion-item">
                     <button class="accordion-header" aria-expanded="false">
                         <span class="accordion-step">02</span>
-                        <span class="accordion-title"><strong>Strategie & Fahrplan</strong> <span class="accordion-title-sub"><br>Fundament statt Bauchgefühl.</span></span>
+                        <span class="accordion-title"><strong>Strategie vor Design</strong> <span class="accordion-title-sub"><br>Kein Pixel ohne Richtung.</span></span>
                         <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                     <div class="accordion-body">
                         <div class="accordion-body-inner">
-                            <p> Zu Beginn stelle ich dir gezielte Fragen zu deiner Expertise, Zielgruppe und 
-Herausforderungen. Daraus entsteht der Fahrplan mit nächsten Schritten und 
-das strategische Fundament. Anschließend recherchiere ich Referenzen und entwickel 
-Ideen. So teilen wir dasselbe Verständnis, bevor wir loslegen. Keine Entwürfe 
-ohne Klarheit über die Richtung. Kein Design ohne Strategie.
-</p>
+                            <p>Wir klären gemeinsam was die Website leisten soll, für wen sie da ist und welche Botschaft ankommen muss. Erst dann fangen wir an.</p>
                         </div>
                     </div>
                 </div>
@@ -3075,20 +2879,14 @@ ohne Klarheit über die Richtung. Kein Design ohne Strategie.
                 <div class="accordion-item">
                     <button class="accordion-header" aria-expanded="false">
                         <span class="accordion-step">03</span>
-                        <span class="accordion-title"><strong>Umsetzung & Übergabe</strong> <span class="accordion-title-sub"><br>Iterativ, nachvollziehbar, zielorientiert.</span></span>
+                        <span class="accordion-title"><strong>Umsetzung und Übergabe</strong> <span class="accordion-title-sub"><br>Transparent bis zur Live-Schaltung.</span></span>
                         <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M2 14L14 2M14 2H2M14 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                     <div class="accordion-body">
                         <div class="accordion-body-inner">
-                            <p>Wir arbeiten in klaren Feedback-Runden: Du gibst präzises Feedback, ich und 
-mein Entwicklungsteam übersetzen es in Lösungen. Schrittweise entsteht ein Ergebnis das dich widerspiegelt und deine Kund:innen 
-anspricht. Immer mit transparentem Plan bis zur Übergabe.</p>
-
-<p><strong>Keine Überraschungen:</strong> Zusätzliche Leistungen immer mit neuem Angebot. 
-Keine Rechnung ohne deine vorherige Zustimmung. Du weißt jederzeit, wo wir stehen, 
-was als Nächstes kommt, wofür du bezahlst und was du erhalten wirst.</p>
+                            <p>Design und Entwicklung passieren transparent. Du weißt immer wo das Projekt steht, bist in Entscheidungen eingebunden und bekommst am Ende ein Ergebnis das funktioniert.</p>
                         </div>
                     </div>
                 </div>
@@ -3100,11 +2898,8 @@ was als Nächstes kommt, wofür du bezahlst und was du erhalten wirst.</p>
     <!-- Contact Section -->
     <section class="contact" id="kontakt">
         <div class="container">
-            <h2>Bereit, deine Expertise sichtbar zu machen?</h2><br>
-            <p>Passen die Pakete nicht? Hinterlasse mir eine Nachricht. Ich melde mich 
-innerhalb von 48 Stunden zurück. Dann klären wir gemeinsam, ob ich dir helfen 
-kann und ob wir zusammenpassen.
-</p>
+            <h2>Bereit anzufangen?</h2><br>
+            <p>Schreib mir kurz worum es geht. Den Rest besprechen wir im Kennenlerngespräch.</p>
             
             <form class="contact-form" id="contactForm"
                   action="https://formsubmit.co/hello@studiojessicaschmidt.de"
@@ -3624,77 +3419,23 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
-/* ---- Hero Intro Typewriter + Main Reveal ---- */
+/* ---- Hero Stop-Motion Karten ---- */
 (function () {
-  var INTRO_TEXT = 'Für Marken, die mehr als ein Logo sind.';
-  var CHAR_DELAY = 55;
-  var HOLD_MS    = 1500;
-  var FADE_MS    = 700;
+  var cards = document.querySelectorAll('.hero-card');
+  if (!cards.length) return;
 
-  var introEl    = document.getElementById('hero-intro');
-  var textEl     = document.getElementById('hero-intro-text');
-  var cursorEl   = document.querySelector('.hero-cursor');
-  var mainEl     = document.getElementById('hero-main');
+  var current  = 0;
+  var total    = cards.length;
+  var INTERVAL = 1400; /* kurz sichtbar, dann nächstes */
 
-  var i = 0;
-
-  function typeNext() {
-    if (i < INTRO_TEXT.length) {
-      textEl.textContent += INTRO_TEXT[i++];
-      setTimeout(typeNext, CHAR_DELAY);
-    } else {
-      setTimeout(function () {
-        introEl.style.opacity  = '0';
-        cursorEl.style.animation = 'none';
-        cursorEl.style.opacity   = '0';
-        setTimeout(function () {
-          introEl.style.display  = 'none';
-          mainEl.style.opacity   = '1';
-          mainEl.classList.add('revealed');
-          triggerHeroAnimations();
-        }, FADE_MS);
-      }, HOLD_MS);
-    }
+  function show(idx) {
+    cards[current].classList.remove('hero-card--active');
+    current = idx % total;
+    cards[current].classList.add('hero-card--active');
   }
 
-  function triggerHeroAnimations() {
-    var words = document.querySelectorAll('.hero-word');
-    var cta   = document.getElementById('hero-cta-main');
-    var tag   = document.getElementById('hero-tagline');
-    var hand  = document.getElementById('hero-handwritten');
-
-    // Wörter nacheinander von oben einsliden
-    words.forEach(function (w, idx) {
-      setTimeout(function () { w.classList.add('animate'); }, 50 + idx * 200);
-    });
-
-    // CTA → Tagline → Handschrift
-    setTimeout(function () { cta.classList.add('animate'); }, 700);
-    setTimeout(function () { cta.classList.add('wobble'); }, 1350);
-    setTimeout(function () { tag.classList.add('animate'); }, 880);
-    setTimeout(function () {
-      hand.classList.add('animate');
-      startHandschriftWobble();
-    }, 1060);
-  }
-
-  function startHandschriftWobble() {
-    var img = document.getElementById('handschrift-img');
-    var frames = [
-      'translate(0px,    0px)   rotate(0deg)',
-      'translate(-1px,   0.5px) rotate(0.4deg)',
-      'translate(1px,   -0.5px) rotate(-0.3deg)',
-      'translate(-0.5px, 1px)   rotate(0.5deg)',
-      'translate(0.5px, -1px)   rotate(-0.2deg)',
-    ];
-    var f = 0;
-    setInterval(function () {
-      f = (f + 1) % frames.length;
-      img.style.transform = frames[f];
-    }, 320);
-  }
-
-  setTimeout(typeNext, 400);
+  show(0);
+  setInterval(function () { show(current + 1); }, INTERVAL);
 })();
 
 /* ---- About-Annotationen Wobble ---- */
@@ -3729,6 +3470,30 @@ document.addEventListener('DOMContentLoaded', function() {
   var gx = gc.getContext('2d');
   function draw(){
     var W = hd.offsetWidth, H = hd.offsetHeight;
+    if (!W || !H) return;
+    gc.width  = Math.round(W);
+    gc.height = Math.round(H);
+    var id = gx.createImageData(gc.width, gc.height), d = id.data;
+    for (var i = 0; i < d.length; i += 4){
+      var v = Math.random() * 255 | 0;
+      d[i] = v; d[i+1] = (v*0.85)|0; d[i+2] = (v*0.68)|0; d[i+3] = 255;
+    }
+    gx.putImageData(id, 0, 0);
+  }
+  draw();
+  window.addEventListener('resize', draw);
+})();
+
+/* Hero Grain — gleicher Effekt wie Header */
+(function(){
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+  var gc = document.createElement('canvas');
+  gc.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;mix-blend-mode:screen;opacity:0.09;';
+  hero.appendChild(gc);
+  var gx = gc.getContext('2d');
+  function draw(){
+    var W = hero.offsetWidth, H = hero.offsetHeight;
     if (!W || !H) return;
     gc.width  = Math.round(W);
     gc.height = Math.round(H);
