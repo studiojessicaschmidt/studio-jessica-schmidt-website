@@ -3452,11 +3452,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var current  = 0;
   var total    = cards.length;
-  var INTERVAL = 700; /* kurz sichtbar, dann nächstes */
+  var INTERVAL = 700;
+  var rotations = [-3, 2.5, -1.8, 3.2];
+  var lastRot = 0;
+
+  function pickRotation() {
+    var available = rotations.filter(function (r) { return r !== lastRot; });
+    var picked = available[Math.floor(Math.random() * available.length)];
+    lastRot = picked;
+    return picked;
+  }
 
   function show(idx) {
     cards[current].classList.remove('hero-card--active');
     current = idx % total;
+    cards[current].style.transform = 'rotate(' + pickRotation() + 'deg)';
     cards[current].classList.add('hero-card--active');
   }
 
