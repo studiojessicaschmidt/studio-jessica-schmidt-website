@@ -279,7 +279,7 @@ header {
     transition: transform 0.4s ease;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
     header.header--hidden {
         transform: translateY(-100%);
     }
@@ -3006,10 +3006,10 @@ footer {
 (function () {
     var header = document.querySelector('header');
     var ctaButton = document.querySelector('.cta-button');
-    var isDesktop = function () { return window.innerWidth >= 1200; };
+    var isNotMobile = function () { return window.innerWidth >= 768; };
 
-    // Desktop: Header initial versteckt
-    if (isDesktop()) {
+    // Tablet + Desktop: Header initial versteckt
+    if (isNotMobile()) {
         header.classList.add('header--hidden');
     }
 
@@ -3024,7 +3024,7 @@ footer {
         var currentScroll = window.pageYOffset;
 
         // Header ein-/ausblenden (nur Desktop)
-        if (isDesktop()) {
+        if (isNotMobile()) {
             if (currentScroll > 50) {
                 header.classList.remove('header--hidden');
             } else {
@@ -3048,7 +3048,7 @@ footer {
 
     // Bei Resize: auf Mobil/Tablet Header immer sichtbar
     window.addEventListener('resize', function () {
-        if (!isDesktop()) {
+        if (!isNotMobile()) {
             header.classList.remove('header--hidden');
         } else if (window.pageYOffset <= 50) {
             header.classList.add('header--hidden');
