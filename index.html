@@ -2258,6 +2258,7 @@ footer {
 
 .hero-projects__stack {
     position: relative;
+    z-index: 2;
     width: 65%;
     aspect-ratio: 3 / 4;
     max-height: 75vh;
@@ -3451,7 +3452,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var current  = 0;
   var total    = cards.length;
-  var INTERVAL = 1400; /* kurz sichtbar, dann nächstes */
+  var INTERVAL = 700; /* kurz sichtbar, dann nächstes */
 
   function show(idx) {
     cards[current].classList.remove('hero-card--active');
@@ -3509,12 +3510,12 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', draw);
 })();
 
-/* Hero Grain — gleicher Effekt wie Header */
+/* Hero Grain — gleicher Effekt wie Header, unter den Karten */
 (function(){
   var hero = document.querySelector('.hero');
   if (!hero) return;
   var gc = document.createElement('canvas');
-  gc.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;mix-blend-mode:screen;opacity:0.09;';
+  gc.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;mix-blend-mode:screen;opacity:0.09;';
   hero.appendChild(gc);
   var gx = gc.getContext('2d');
   function draw(){
