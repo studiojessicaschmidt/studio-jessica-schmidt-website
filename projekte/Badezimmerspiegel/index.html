@@ -1083,7 +1083,7 @@ footer {
                     </p>
                 </div>
                                              <div style="text-align: right;">
-                    <video class="reel-video" autoplay loop muted playsinline>
+                    <video class="reel-video lazy-video" loop muted playsinline preload="none" poster="/projekte/Badezimmerspiegel/Vlog Badezimmerspiegel Baran Beatzz-poster.jpg">
                         <source src="/projekte/Badezimmerspiegel/Vlog Badezimmerspiegel Baran Beatzz.mp4" type="video/mp4">
                         Ihr Browser unterstützt das Video-Tag nicht.
                     </video>
@@ -1339,5 +1339,31 @@ footer {
         obs.observe(grid);
     })();
     </script>
+<script>
+/* lazy-video-player: Laedt und startet Videos erst beim Scrollen in den Sichtbereich.
+   Verhindert, dass alle Videos gleichzeitig die Bandbreite blockieren. */
+(function () {
+  function init() {
+    var vids = document.querySelectorAll('video.lazy-video');
+    if (!vids.length) return;
+    if (!('IntersectionObserver' in window)) {
+      vids.forEach(function (v) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function(){}); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) {
+          if (v.getAttribute('preload') === 'none') { v.preload = 'auto'; v.load(); }
+          var p = v.play(); if (p && p.catch) p.catch(function(){});
+        } else { v.pause(); }
+      });
+    }, { rootMargin: '300px 0px' });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
 </body>
 </html>
