@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Playground — Studio Jessica Schmidt</title>
+
+    <!-- Fonts (relative Pfade — gleicher Ordner wie index.html) -->
+    <link rel="preload" href="/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/fonts/Satoshi-Bold.otf" as="font" type="font/otf" crossorigin>
+
+    <style>
+        /* ============================================
+           FONTS
+           ============================================ */
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('/fonts/Satoshi-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('/fonts/Satoshi-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('/fonts/Satoshi-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ============================================
+           RESET + BASE
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #2C1810;
+            color: #F5F5F0;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           PLAYGROUND TOOLBAR (nur lokal sichtbar)
+           ============================================ */
+        #playground-toolbar {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        #playground-toolbar span {
+            color: #FF6B35;
+            font-weight: 700;
+        }
+        .toolbar-btn {
+            background: rgba(255,107,53,0.15);
+            border: 1px solid rgba(255,107,53,0.4);
+            color: #FF6B35;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: background 0.2s ease;
+        }
+        .toolbar-btn:hover { background: rgba(255,107,53,0.3); }
+        .toolbar-btn.active {
+            background: #FF6B35;
+            color: #2C1810;
+        }
+
+        /* ============================================
+           ORANGE DOT
+           ============================================ */
+        .orange-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #FF6B35;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            background: #2C1810;
+            overflow: hidden;
+        }
+
+        /* Canvas Mesh Hintergrund */
+        #mesh-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* ---- INTRO TYPEWRITER ---- */
+        #hero-intro {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.7s ease;
+        }
+
+        #hero-intro-text {
+            font-family: 'Satoshi', sans-serif;
+            font-size: clamp(22px, 4vw, 48px);
+            font-weight: 400;
+            color: #F5F5F0;
+            letter-spacing: -0.01em;
+            opacity: 0.88;
+        }
+
+        .hero-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: #F5F5F0;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: cursor-blink 0.85s steps(1) infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 0.7; }
+            50%       { opacity: 0; }
+        }
+
+        /* ---- HERO MAIN (nach Intro) ---- */
+        #hero-main {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            transition: opacity 0.8s ease;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #hero-main.revealed {
+            pointer-events: auto;
+        }
+
+        /* WÖRTER — rechts, groß */
+        #hero-words {
+            position: absolute;
+            right: clamp(32px, 5vw, 80px);
+            top: clamp(100px, 10.5vh, 128px);
+            text-align: right;
+        }
+
+        .hero-word {
+            display: block;
+            font-family: 'Satoshi', sans-serif;
+            font-size: clamp(52px, 11.5vw, 160px);
+            font-weight: 700;
+            line-height: 1.01;
+            color: #F5F5F0;
+            opacity: 0;
+            transform: translateY(-70px);
+        }
+
+        @media (max-width: 767px) {
+            .hero-word { line-height: 1.07; }
+        }
+
+        .hero-word.animate {
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CTA BUTTON */
+        #hero-cta-main {
+            position: absolute;
+            right: clamp(32px, 5vw, 80px);
+            top: clamp(370px, 52vh, 545px);
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 28px;
+            border: 1.5px solid #FF6B35;
+            border-radius: 30px;
+            color: #FF6B35;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.5s ease, transform 0.5s ease,
+                        background 0.25s ease, color 0.25s ease;
+        }
+
+        #hero-cta-main:hover {
+            background: #FF6B35;
+            color: #2C1810;
+            transform: translateY(-2px) !important;
+        }
+
+        #hero-cta-main.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #hero-cta-main.wobble {
+            animation: btn-wobble 1.3s linear both;
+            transition: opacity 0.5s ease, background 0.25s ease, color 0.25s ease;
+        }
+
+        @keyframes btn-wobble {
+            0%   { transform: translate(0px,    0px)    rotate(0deg);    }
+            7%   { transform: translate(-1px,   0.5px)  rotate(0.3deg);  }
+            15%  { transform: translate(1.5px,  -0.8px) rotate(-0.5deg); }
+            23%  { transform: translate(-2.2px, 1.1px)  rotate(0.7deg);  }
+            31%  { transform: translate(2px,    -1.3px) rotate(-0.6deg); }
+            39%  { transform: translate(-1.8px, 0.9px)  rotate(0.5deg);  }
+            47%  { transform: translate(1.4px,  -0.7px) rotate(-0.4deg); }
+            55%  { transform: translate(-1px,   0.5px)  rotate(0.3deg);  }
+            63%  { transform: translate(0.7px,  -0.4px) rotate(-0.2deg); }
+            71%  { transform: translate(-0.5px, 0.3px)  rotate(0.15deg); }
+            80%  { transform: translate(0.3px,  -0.2px) rotate(-0.08deg);}
+            90%  { transform: translate(-0.1px, 0.1px)  rotate(0.03deg); }
+            100% { transform: translate(0px,    0px)    rotate(0deg);    }
+        }
+
+        /* TAGLINE — unten links */
+        #hero-tagline {
+            position: absolute;
+            left: clamp(32px, 5vw, 91px);
+            bottom: clamp(55px, 9vh, 110px);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            max-width: 44vw;
+        }
+
+        #hero-tagline .orange-dot {
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        #hero-tagline p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.35;
+            color: #F5F5F0;
+            letter-spacing: 0.01em;
+            margin: 0;
+        }
+
+        #hero-tagline.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HANDSCHRIFT — unten rechts */
+        #hero-handwritten {
+            position: absolute;
+            right: clamp(32px, 5vw, 80px);
+            bottom: clamp(55px, 9vh, 110px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            width: clamp(148px, 14.74vw, 216px);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #hero-handwritten { display: block; }
+        }
+
+        #hero-handwritten.animate {
+            opacity: 0.9;
+        }
+
+        #handschrift-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Desktop — präzise Werte */
+        @media (min-width: 1200px) {
+            #hero-words     { right: 80px; top: 110px; }
+            .hero-word      { font-size: 155px; line-height: 0.99; }
+            #hero-cta-main  { right: 80px; top: 635px; bottom: auto; }
+            #hero-tagline   { left: 91px; bottom: 100px; max-width: 420px; }
+            #hero-tagline p { font-size: 18px; }
+            #hero-handwritten { right: 80px; bottom: 100px; width: 222px; }
+        }
+
+        /* Mobile — sauberes Stacking */
+        @media (max-width: 767px) {
+            #hero-cta-main {
+                top: auto;
+                bottom: 88px;
+                right: 24px;
+                left: 24px;
+                justify-content: center;
+            }
+            #hero-tagline {
+                bottom: 190px;
+                left: 24px;
+                max-width: 72vw;
+            }
+            #hero-tagline p { font-size: 14px; }
+        }
+
+        /* SCROLL INDICATOR */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s ease;
+            color: #F5F5F0;
+        }
+
+        .scroll-indicator:hover { opacity: 0.9; }
+
+        .scroll-indicator span {
+            display: block;
+            width: 1px;
+            height: 24px;
+            background: currentColor;
+            animation: scroll-line 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scroll-line {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50%       { opacity: 1;   transform: scaleY(1.3); }
+        }
+
+        /* ============================================
+           VARIANTEN-TOGGLE
+           Blende .hero-variant-b aus wenn .show-a aktiv
+           Blende .hero-variant-a aus wenn .show-b aktiv
+           ============================================ */
+        body.show-variant-a .hero-variant-b { display: none !important; }
+        body.show-variant-b .hero-variant-a { display: none !important; }
+
+    </style>
+
+    <!-- ============================================
+         EIGENE STYLES FÜR NEUE VARIANTE hier eintragen
+         ============================================ -->
+    <style id="variant-styles">
+        /* ============================================
+           VARIANTE B — EDITORIAL HERO
+           ============================================ */
+
+        /* Hintergrund auf Cream umschalten, Canvas verstecken */
+        body.show-variant-b .hero        { background: #F5F5F0; }
+        body.show-variant-b #mesh-bg     { display: none; }
+        body.show-variant-b .scroll-indicator { color: #2C1810; opacity: 0.3; }
+        /* Variante A Elemente komplett verstecken wenn B aktiv */
+        body.show-variant-b #hero-intro  { display: none !important; }
+
+        /* Wrapper */
+        #hero-main-b {
+            background: #F5F5F0;
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        body.show-variant-b #hero-main-b { pointer-events: auto; }
+
+        /* Leichte Vignette für Tiefe */
+        #hero-main-b::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 40%, transparent 40%, rgba(44,24,16,0.035) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ---- HEADER ---- */
+        .vb-header {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 48px;
+        }
+        .vb-logo {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #2C1810;
+            letter-spacing: -0.01em;
+        }
+        .vb-nav {
+            display: flex;
+            gap: 36px;
+        }
+        .vb-nav a {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #2C1810;
+            text-decoration: none;
+            opacity: 0.45;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+        .vb-nav a:hover { opacity: 1; }
+
+        /* ---- VERTIKALES LABEL LINKS ---- */
+        .vb-vert-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: center;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #2C1810;
+            opacity: 0.28;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        /* ---- KARTEN RECHTS (oben) ---- */
+        .vb-cards {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 47%;
+            height: 74vh;
+            min-height: 400px;
+            display: flex;
+            gap: 10px;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .vb-card {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #e8e4df;
+        }
+
+        /* Foto-Karte */
+        .vb-card-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+            filter: grayscale(100%) contrast(1.05);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .vb-card:hover .vb-card-photo { transform: scale(1.04); }
+
+        /* Caption-Overlay unten auf Foto-Karte */
+        .vb-card-cap {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 32px 22px 22px;
+            background: linear-gradient(to top, rgba(28,14,8,0.88) 0%, rgba(28,14,8,0.45) 55%, transparent 100%);
+        }
+        .vb-cat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Satoshi', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #F5F5F0;
+            opacity: 0.65;
+            margin-bottom: 6px;
+        }
+        .vb-card-title {
+            font-family: 'Satoshi', sans-serif;
+            font-size: clamp(17px, 1.6vw, 24px);
+            font-weight: 700;
+            color: #F5F5F0;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        /* Dunkle Karte (Strategie) */
+        .vb-card--dark {
+            background: #2C1810;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 22px;
+        }
+        .vb-card--dark .vb-cat {
+            color: #FF6B35;
+            opacity: 1;
+        }
+        .vb-card--dark .vb-card-title {
+            color: #F5F5F0;
+            margin-bottom: 16px;
+        }
+        .vb-services {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .vb-services li {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 12px;
+            color: #F5F5F0;
+            opacity: 0.35;
+            font-weight: 400;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(245,245,240,0.08);
+            letter-spacing: 0.03em;
+        }
+        .vb-services li:last-child { border-bottom: none; }
+
+        /* ---- SCHWEBENDER CTA KREIS ---- */
+        .vb-cta-circle {
+            position: absolute;
+            left: 53%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            width: 92px;
+            height: 92px;
+            border: 1px solid rgba(44,24,16,0.18);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245,245,240,0.82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-decoration: none;
+            transition: background 0.25s ease, border-color 0.25s ease,
+                        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            opacity: 0;
+        }
+        .vb-cta-circle.vb-in { opacity: 1; }
+        .vb-cta-circle:hover {
+            background: #FF6B35;
+            border-color: #FF6B35;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .vb-cta-circle span {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #2C1810;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .vb-cta-circle:hover span { color: #F5F5F0; }
+
+        /* ---- GROSSES WORT (unten) ---- */
+        .vb-word-area {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 0 0 48px;
+            z-index: 4;
+        }
+
+        .vb-eyebrow {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #2C1810;
+            opacity: 0;
+            letter-spacing: 0.04em;
+            margin-bottom: 10px;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .vb-eyebrow.vb-in { opacity: 0.42; transform: translateY(0); }
+
+        .vb-word-wrap {
+            position: relative;
+            display: inline-block;
+            /* Wort leicht unten abschneiden für editorial Bleed */
+            margin-bottom: -0.06em;
+        }
+
+        .vb-big-word {
+            display: block;
+            font-family: 'Satoshi', sans-serif;
+            /* Breite passt auf ~90% Viewport */
+            font-size: clamp(90px, 17.2vw, 248px);
+            font-weight: 700;
+            color: #2C1810;
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .vb-big-word.vb-in { opacity: 1; transform: translateY(0); }
+
+        /* ---- HANDGEZEICHNETER STRICH (SVG) ---- */
+        .vb-scribble {
+            position: absolute;
+            /* knapp unter der Baseline des Wortes */
+            bottom: 0.08em;
+            left: 0.01em;
+            /* breite passt sich dem Wort an */
+            width: 101%;
+            height: 0.12em;
+            overflow: visible;
+            pointer-events: none;
+        }
+
+        /* Hauptstrich */
+        .vb-s-line {
+            stroke: #FF6B35;
+            stroke-width: 5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1080;
+            stroke-dashoffset: 1080;
+        }
+        /* Zweiter Strich – dünner, leicht versetzt, echte Marker-Textur */
+        .vb-s-line2 {
+            stroke: #FF6B35;
+            stroke-width: 2.5;
+            opacity: 0.45;
+            stroke-dasharray: 1080;
+            stroke-dashoffset: 1080;
+        }
+        /* Draw-in Animation */
+        .vb-scribble.draw .vb-s-line {
+            animation: vb-draw 0.75s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+        }
+        .vb-scribble.draw .vb-s-line2 {
+            animation: vb-draw 0.85s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+        }
+        @keyframes vb-draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Karten Slide-in beim Reveal */
+        .vb-cards {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s;
+        }
+        .vb-cards.vb-in { opacity: 1; transform: translateY(0); }
+
+        /* ---- MOBILE (< 768px) ---- */
+        @media (max-width: 767px) {
+            .vb-header   { padding: 20px 24px; }
+            .vb-nav      { display: none; }
+            .vb-vert-label { display: none; }
+            .vb-cards    { display: none; }
+            .vb-cta-circle {
+                left: 50%;
+                top: auto;
+                bottom: 120px;
+                transform: translateX(-50%);
+            }
+            .vb-cta-circle:hover { transform: translateX(-50%) scale(1.1); }
+            .vb-word-area { padding-left: 24px; }
+            .vb-eyebrow  { font-size: 12px; }
+        }
+
+        /* ---- DESKTOP (1200px+) ---- */
+        @media (min-width: 1200px) {
+            .vb-cards { width: 46%; height: 72vh; }
+            .vb-cta-circle { left: 54%; top: 57%; width: 100px; height: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================
+     PLAYGROUND TOOLBAR
+     ============================================ -->
+<div id="playground-toolbar">
+    <span>HERO PLAYGROUND</span>
+    &nbsp;·&nbsp;
+    <button class="toolbar-btn active" id="btn-a" onclick="showVariant('a')">Aktuell (A)</button>
+    <button class="toolbar-btn" id="btn-b" onclick="showVariant('b')">Neu (B)</button>
+    <button class="toolbar-btn" id="btn-replay" onclick="replayIntro()">↩ Replay</button>
+</div>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero">
+    <canvas id="mesh-bg"></canvas>
+
+    <!-- Typewriter Intro -->
+    <div id="hero-intro">
+        <span id="hero-intro-text"></span><span class="hero-cursor"></span>
+    </div>
+
+    <!-- ==========================================
+         VARIANTE A — Aktuelle Version
+         ========================================== -->
+    <div id="hero-main" style="opacity:0" class="hero-variant-a">
+
+        <!-- Wörter rechts -->
+        <div id="hero-words">
+            <span class="hero-word">Strategie</span>
+            <span class="hero-word">Branding</span>
+            <span class="hero-word">Umsetzung</span>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="#" id="hero-cta-main">Lass uns sprechen</a>
+
+        <!-- Tagline unten links -->
+        <div id="hero-tagline">
+            <span class="orange-dot"></span>
+            <p>Innovative Ideen verdienen es,<br>auf den ersten Blick zu überzeugen.</p>
+        </div>
+
+        <!-- Handschrift unten rechts -->
+        <div id="hero-handwritten">
+            <img src="Von%20Gr%C3%BCnderin%20f%C3%BCr%20Gr%C3%BCnderinnen.webp"
+                 fetchpriority="high"
+                 alt="Von Gründerin für Gründerinnen"
+                 id="handschrift-img">
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         VARIANTE B — Neue Ideen hier bauen
+         Alles unterhalb kann frei angepasst werden.
+         ========================================== -->
+    <div id="hero-main-b" style="opacity:0; position:absolute; inset:0; z-index:3;" class="hero-variant-b">
+
+        <!-- Header -->
+        <header class="vb-header">
+            <div class="vb-logo">Studio Jessica Schmidt</div>
+            <nav class="vb-nav">
+                <a href="#">Klarheit</a>
+                <a href="#">Identität</a>
+                <a href="#">Anwendung</a>
+            </nav>
+        </header>
+
+        <!-- Vertikales Label links -->
+        <div class="vb-vert-label">Für Gründerinnen +</div>
+
+        <!-- Karten oben rechts -->
+        <div class="vb-cards">
+            <!-- Karte 1: Portrait-Foto -->
+            <div class="vb-card">
+                <img src="Profilbild%20sw.webp"
+                     alt="Jessica Schmidt — Branding & Strategie"
+                     class="vb-card-photo">
+                <div class="vb-card-cap">
+                    <p class="vb-cat">
+                        <span class="orange-dot" style="background:#F5F5F0; opacity:0.7;"></span>
+                        Branding
+                    </p>
+                    <h3 class="vb-card-title">Marken<br>— mit Charakter</h3>
+                </div>
+            </div>
+
+            <!-- Karte 2: Dunkel / Strategie -->
+            <div class="vb-card vb-card--dark">
+                <p class="vb-cat">
+                    <span class="orange-dot"></span>
+                    Strategie
+                </p>
+                <h3 class="vb-card-title">Klarheit<br>— von Anfang an</h3>
+                <ul class="vb-services">
+                    <li>Positionierung</li>
+                    <li>Messaging & Tonalität</li>
+                    <li>KI-Sparringspartner</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Schwebender CTA-Kreis -->
+        <a href="https://cal.eu/studiojessicaschmidt" target="_blank" rel="noopener"
+           class="vb-cta-circle">
+            <span>Lass uns<br>sprechen</span>
+        </a>
+
+        <!-- Grosses Wort (unten) -->
+        <div class="vb-word-area">
+            <p class="vb-eyebrow">Von Gründerin für Gründerinnen.</p>
+            <div class="vb-word-wrap">
+                <span class="vb-big-word">Charakter.</span>
+                <!-- Handgezeichneter SVG-Strich -->
+                <svg class="vb-scribble" viewBox="0 0 1000 40" preserveAspectRatio="none">
+                    <!-- Hauptstrich: wellig, organisch, leicht unregelmäßig -->
+                    <path class="vb-s-line"
+                        d="M 3 23
+                           C 55 13, 115 31, 175 21
+                           C 235 11, 295 28, 355 19
+                           C 415 10, 470 27, 530 18
+                           C 590 9,  648 26, 705 17
+                           C 762 8,  820 25, 878 16
+                           C 918 10, 955 21, 985 15
+                           C 991 13, 996 16, 999 15"/>
+                    <!-- Zweiter Strich: etwas tiefer, für Marker-Textur -->
+                    <path class="vb-s-line vb-s-line2"
+                        d="M 6 28
+                           C 65 21, 130 33, 192 25
+                           C 254 17, 315 30, 375 23
+                           C 435 16, 492 29, 550 22
+                           C 608 15, 666 28, 723 21
+                           C 780 14, 838 27, 895 20
+                           C 932 16, 964 24, 998 20"/>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <span></span>
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2v12M2 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+</section>
+
+
+<!-- ============================================
+     MESH CANVAS ANIMATION
+     ============================================ -->
+<script>
+(function () {
+  const cv  = document.getElementById('mesh-bg');
+  const ctx = cv.getContext('2d');
+  let W, H, t = 0, animId, grainTick = 0;
+
+  const grainCv = document.createElement('canvas');
+  grainCv.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;mix-blend-mode:screen;opacity:0.09;';
+  cv.parentElement.appendChild(grainCv);
+  const grainCtx = grainCv.getContext('2d');
+
+  function drawGrain() {
+    const gW = grainCv.width, gH = grainCv.height;
+    const id = grainCtx.createImageData(gW, gH);
+    const d  = id.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const v = Math.random() * 255 | 0;
+      d[i]   = v;
+      d[i+1] = (v * 0.85) | 0;
+      d[i+2] = (v * 0.68) | 0;
+      d[i+3] = 255;
+    }
+    grainCtx.putImageData(id, 0, 0);
+  }
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    cv.width  = Math.round(W * devicePixelRatio);
+    cv.height = Math.round(H * devicePixelRatio);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    grainCv.width  = Math.round(W);
+    grainCv.height = Math.round(H);
+    drawGrain();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const BASE   = [44,  24, 16];
+  const ORANGE = [200, 72, 26];
+  const CREAM  = [210,188,165];
+  const DARK1  = [22,  11,  6];
+  const DARK2  = [55,  28, 14];
+  const MID    = [100, 46, 18];
+  const MESH = [
+    {bx:0.00,by:0.00,ax:0.06,ay:0.07,spd:0.27,ph:0.00,c:BASE},
+    {bx:0.33,by:0.00,ax:0.07,ay:0.06,spd:0.33,ph:1.57,c:DARK1},
+    {bx:0.67,by:0.00,ax:0.06,ay:0.08,spd:0.285,ph:3.14,c:ORANGE},
+    {bx:1.00,by:0.00,ax:0.05,ay:0.07,spd:0.375,ph:4.71,c:BASE},
+    {bx:0.00,by:0.33,ax:0.07,ay:0.06,spd:0.315,ph:2.09,c:[35,18,10]},
+    {bx:0.33,by:0.33,ax:0.09,ay:0.08,spd:0.24, ph:0.52,c:ORANGE},
+    {bx:0.67,by:0.33,ax:0.08,ay:0.09,spd:0.36, ph:2.62,c:CREAM},
+    {bx:1.00,by:0.33,ax:0.06,ay:0.07,spd:0.30, ph:1.05,c:MID},
+    {bx:0.00,by:0.67,ax:0.07,ay:0.07,spd:0.345,ph:3.67,c:BASE},
+    {bx:0.33,by:0.67,ax:0.08,ay:0.06,spd:0.27, ph:5.24,c:DARK2},
+    {bx:0.67,by:0.67,ax:0.09,ay:0.08,spd:0.405,ph:1.83,c:ORANGE},
+    {bx:1.00,by:0.67,ax:0.06,ay:0.09,spd:0.225,ph:4.19,c:CREAM},
+    {bx:0.00,by:1.00,ax:0.06,ay:0.06,spd:0.30, ph:0.87,c:[20,10,5]},
+    {bx:0.33,by:1.00,ax:0.07,ay:0.07,spd:0.375,ph:2.44,c:BASE},
+    {bx:0.67,by:1.00,ax:0.08,ay:0.06,spd:0.255,ph:5.76,c:MID},
+    {bx:1.00,by:1.00,ax:0.05,ay:0.08,spd:0.33, ph:3.49,c:BASE},
+  ];
+  const BLOBS = [
+    {bx:0.62,by:0.45,ax:0.12,ay:0.10,spd:0.21, ph:0.00,r:0.50,c:ORANGE,      op:0.40},
+    {bx:0.38,by:0.58,ax:0.10,ay:0.12,spd:0.27, ph:2.09,r:0.42,c:MID,         op:0.35},
+    {bx:0.75,by:0.32,ax:0.11,ay:0.09,spd:0.18, ph:4.19,r:0.40,c:[200,88,38], op:0.30},
+    {bx:0.50,by:0.72,ax:0.09,ay:0.11,spd:0.30, ph:1.05,r:0.36,c:CREAM,       op:0.12},
+    {bx:0.28,by:0.35,ax:0.10,ay:0.10,spd:0.24, ph:3.67,r:0.38,c:DARK2,       op:0.32},
+    {bx:0.82,by:0.68,ax:0.08,ay:0.10,spd:0.33, ph:5.24,r:0.32,c:ORANGE,      op:0.24},
+    {bx:0.55,by:0.22,ax:0.11,ay:0.08,spd:0.225,ph:1.83,r:0.35,c:CREAM,       op:0.14},
+  ];
+
+  function pt(p) {
+    return {
+      x: (p.bx + Math.sin(t*p.spd+p.ph)*p.ax + Math.sin(t*p.spd*2.1+p.ph+1.3)*p.ax*0.3) * W,
+      y: (p.by + Math.cos(t*p.spd*1.2+p.ph)*p.ay + Math.cos(t*p.spd*1.7+p.ph+0.9)*p.ay*0.3) * H,
+    };
+  }
+  function rgba(c, a) { return `rgba(${c[0]},${c[1]},${c[2]},${a.toFixed(3)})`; }
+
+  function draw() {
+    ctx.fillStyle = '#2c1810';
+    ctx.fillRect(0, 0, W, H);
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        const i  = row * 4 + col;
+        const p0 = pt(MESH[i]),   c0 = MESH[i].c;
+        const p1 = pt(MESH[i+1]), c1 = MESH[i+1].c;
+        const p2 = pt(MESH[i+4]), c2 = MESH[i+4].c;
+        const p3 = pt(MESH[i+5]), c3 = MESH[i+5].c;
+        const dist = Math.max(
+          Math.hypot(p3.x-p0.x, p3.y-p0.y),
+          Math.hypot(p2.x-p1.x, p2.y-p1.y)
+        ) * 0.75;
+        [[p0,c0],[p1,c1],[p2,c2],[p3,c3]].forEach(([p,c]) => {
+          const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,dist);
+          g.addColorStop(0,   rgba(c, 0.65));
+          g.addColorStop(0.5, rgba(c, 0.22));
+          g.addColorStop(1,   rgba(c, 0));
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, W, H);
+        });
+      }
+    }
+    BLOBS.forEach(b => {
+      const px = (b.bx + Math.sin(t*b.spd+b.ph)*b.ax + Math.sin(t*b.spd*2.3+b.ph+1.1)*b.ax*0.25) * W;
+      const py = (b.by + Math.cos(t*b.spd*1.15+b.ph)*b.ay + Math.cos(t*b.spd*1.8+b.ph+0.7)*b.ay*0.25) * H;
+      const rr = b.r * Math.max(W,H) * 0.7 * (1 + 0.08*Math.sin(t*b.spd*3+b.ph));
+      const g  = ctx.createRadialGradient(px,py,0,px,py,rr);
+      g.addColorStop(0,    rgba(b.c, b.op));
+      g.addColorStop(0.28, rgba(b.c, b.op*0.50));
+      g.addColorStop(0.60, rgba(b.c, b.op*0.15));
+      g.addColorStop(1,    rgba(b.c, 0));
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    });
+    ctx.fillStyle = 'rgba(44,24,16,0.32)';
+    ctx.fillRect(0, 0, W, H);
+    const lv = ctx.createLinearGradient(0,0,W*0.52,0);
+    lv.addColorStop(0,    'rgba(28,14,8,0.80)');
+    lv.addColorStop(0.38, 'rgba(28,14,8,0.38)');
+    lv.addColorStop(1,    'rgba(28,14,8,0)');
+    ctx.fillStyle = lv; ctx.fillRect(0,0,W,H);
+    const rv = ctx.createRadialGradient(W*0.56,H*0.50,H*0.08,W*0.56,H*0.50,W*0.82);
+    rv.addColorStop(0,    'rgba(0,0,0,0)');
+    rv.addColorStop(0.55, 'rgba(0,0,0,0.08)');
+    rv.addColorStop(0.78, 'rgba(0,0,0,0.35)');
+    rv.addColorStop(1,    'rgba(0,0,0,0.78)');
+    ctx.fillStyle = rv; ctx.fillRect(0,0,W,H);
+    const tv = ctx.createLinearGradient(0,0,0,H*0.32);
+    tv.addColorStop(0,'rgba(28,14,8,0.70)'); tv.addColorStop(1,'rgba(28,14,8,0)');
+    ctx.fillStyle = tv; ctx.fillRect(0,0,W,H);
+    const bv = ctx.createLinearGradient(0,H,0,H*0.68);
+    bv.addColorStop(0,'rgba(28,14,8,0.70)'); bv.addColorStop(1,'rgba(28,14,8,0)');
+    ctx.fillStyle = bv; ctx.fillRect(0,0,W,H);
+    t += 1/60;
+    animId = requestAnimationFrame(draw);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(animId);
+    else animId = requestAnimationFrame(draw);
+  });
+  draw();
+})();
+</script>
+
+
+<!-- ============================================
+     HERO INTRO + ANIMATIONEN
+     ============================================ -->
+<script>
+(function () {
+  var INTRO_TEXT = 'Charakter schafft Klarheit.';
+  var CHAR_DELAY = 55;
+  var HOLD_MS    = 1500;
+  var FADE_MS    = 700;
+
+  var introEl  = document.getElementById('hero-intro');
+  var textEl   = document.getElementById('hero-intro-text');
+  var cursorEl = document.querySelector('.hero-cursor');
+  var mainEl   = document.getElementById('hero-main');
+
+  var i = 0;
+
+  function typeNext() {
+    if (i < INTRO_TEXT.length) {
+      textEl.textContent += INTRO_TEXT[i++];
+      setTimeout(typeNext, CHAR_DELAY);
+    } else {
+      setTimeout(function () {
+        introEl.style.opacity    = '0';
+        cursorEl.style.animation = 'none';
+        cursorEl.style.opacity   = '0';
+        setTimeout(function () {
+          introEl.style.display = 'none';
+          mainEl.style.opacity  = '1';
+          mainEl.classList.add('revealed');
+          triggerHeroAnimations();
+        }, FADE_MS);
+      }, HOLD_MS);
+    }
+  }
+
+  function triggerHeroAnimations() {
+    var words = document.querySelectorAll('.hero-word');
+    var cta   = document.getElementById('hero-cta-main');
+    var tag   = document.getElementById('hero-tagline');
+    var hand  = document.getElementById('hero-handwritten');
+
+    words.forEach(function (w, idx) {
+      setTimeout(function () { w.classList.add('animate'); }, 50 + idx * 200);
+    });
+
+    setTimeout(function () { cta.classList.add('animate'); }, 700);
+    setTimeout(function () { cta.classList.add('wobble'); }, 1350);
+    setTimeout(function () { tag.classList.add('animate'); }, 880);
+    setTimeout(function () { hand.classList.add('animate'); }, 1060);
+  }
+
+  // Intro starten
+  typeNext();
+
+  // Globale Replay-Funktion für Toolbar
+  window.replayIntro = function () {
+    // Alles zurücksetzen
+    textEl.textContent = '';
+    i = 0;
+    introEl.style.display  = '';
+    introEl.style.opacity  = '1';
+    cursorEl.style.animation = '';
+    cursorEl.style.opacity   = '';
+    mainEl.style.opacity   = '0';
+    mainEl.classList.remove('revealed');
+
+    document.querySelectorAll('.hero-word').forEach(function(w) {
+      w.classList.remove('animate');
+    });
+    var cta  = document.getElementById('hero-cta-main');
+    var tag  = document.getElementById('hero-tagline');
+    var hand = document.getElementById('hero-handwritten');
+    if (cta)  { cta.classList.remove('animate'); cta.classList.remove('wobble'); }
+    if (tag)  { tag.classList.remove('animate'); }
+    if (hand) { hand.classList.remove('animate'); }
+
+    setTimeout(typeNext, 100);
+  };
+})();
+</script>
+
+
+<!-- ============================================
+     VARIANTEN-TOGGLE (Toolbar)
+     ============================================ -->
+<script>
+var vbRevealed = false;
+
+function revealVariantB() {
+    if (vbRevealed) return;
+    vbRevealed = true;
+
+    var word    = document.querySelector('.vb-big-word');
+    var eyebrow = document.querySelector('.vb-eyebrow');
+    var cards   = document.querySelector('.vb-cards');
+    var cta     = document.querySelector('.vb-cta-circle');
+    var scribble = document.querySelector('.vb-scribble');
+
+    // Karten zuerst
+    if (cards)   setTimeout(function() { cards.classList.add('vb-in'); }, 80);
+    // Eyebrow
+    if (eyebrow) setTimeout(function() { eyebrow.classList.add('vb-in'); }, 260);
+    // Grosses Wort
+    if (word)    setTimeout(function() { word.classList.add('vb-in'); }, 360);
+    // Scribble zeichnet sich ein (nach dem Wort)
+    if (scribble) setTimeout(function() { scribble.classList.add('draw'); }, 780);
+    // CTA-Kreis
+    if (cta)     setTimeout(function() {
+        cta.style.transition = 'opacity 0.5s ease, background 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+        cta.classList.add('vb-in');
+    }, 600);
+}
+
+function showVariant(v) {
+    document.getElementById('btn-a').classList.toggle('active', v === 'a');
+    document.getElementById('btn-b').classList.toggle('active', v === 'b');
+    document.body.classList.toggle('show-variant-a', v === 'a');
+    document.body.classList.toggle('show-variant-b', v === 'b');
+
+    var mainB = document.getElementById('hero-main-b');
+    if (v === 'b' && mainB) {
+        mainB.style.opacity = '1';
+        mainB.style.pointerEvents = 'auto';
+        revealVariantB();
+    }
+    if (v === 'a') {
+        var mainA = document.getElementById('hero-main');
+        if (mainA) {
+            mainA.style.opacity = '1';
+            mainA.classList.add('revealed');
+        }
+    }
+}
+// Standard: Variante A
+document.body.classList.add('show-variant-a');
+</script>
+
+</body>
+</html>
